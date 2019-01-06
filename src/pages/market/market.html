@@ -1,0 +1,182 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+        	<div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header" *ngIf="view != 'profile'">
+    	<ion-row>
+    		<ion-col>
+    			<div class="app-header-switch-area" (click)="scroll()">
+                    <label class="title">Market</label>
+                </div>
+    		</ion-col>
+    		<!-- <ion-col>
+    			<ion-buttons end *ngIf="role == 1">
+    				<button ion-button round (click)="addProduct()">Add Product</button>
+    			</ion-buttons>
+    		</ion-col> -->
+    	</ion-row>
+    </ion-toolbar>
+    <ion-toolbar class="sub-header" *ngIf="view == 'profile'">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>Templates</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div *ngIf="view != 'profile'">
+		<div style="margin: 10px; font-size: 16px;">Below are room design templates that you can buy and use to design a room of your own.</div>
+		<div class="filter_outer">
+			<ion-list class="filters" *ngIf="isCollapsed">
+				<form [formGroup]="filter">
+					<ion-item>
+					  <ion-label>Room Type</ion-label>
+					  <ion-select formControlName="room_type">
+					    <ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option *ngFor="let item of room_type" [value]="item.id">{{item.name}}</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>Style</ion-label>
+					  <ion-select formControlName="style_id">
+					  	<ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option *ngFor="let item of styles" [value]="item.id">{{item.name}}</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>Price</ion-label>
+					  <ion-select formControlName="price">
+					  	<ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option value="<=25">less than $25</ion-option>
+					    <ion-option value=">=25|<=49">$25 - $49</ion-option>
+					    <ion-option value=">=50|<=99">$50 - $99</ion-option>
+					    <ion-option value=">=100|<=249">$100 - $249</ion-option>
+					    <ion-option value=">=250|<=499">$250 - $499</ion-option>
+					    <ion-option value=">=500|<=749">$500 - $749</ion-option>
+					    <ion-option value=">=750|<=1000">$750 - $1,000</ion-option>
+					    <ion-option value=">=1000|<=1999">$1,000 - $1,999</ion-option>
+					    <ion-option value=">=2000|<=2999">$2,000 - $2,999</ion-option>
+					    <ion-option value=">=3000|<=3999">$3,000 - $3,999</ion-option>
+					    <ion-option value=">=4000|<=4999">$4,000 - $4,999</ion-option>
+					    <ion-option value=">=5000">More than $5,000</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>Room Budget</ion-label>
+					  <ion-select formControlName="room_budget">
+					  	<ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option value="<=250">less than $250</ion-option>
+					    <ion-option value=">=250|<=500">$250 - $500</ion-option>
+					    <ion-option value=">=500|<=1000">$500 - $1000</ion-option>
+					    <ion-option value=">=1000|<=2500">$1000 - $2500</ion-option>
+					    <ion-option value=">=2500|<=5000">$2500 - $5000</ion-option>
+					    <ion-option value=">=5000|<=7500">$5000 - $7500</ion-option>
+					    <ion-option value=">=7500|<=10000">$7500 - $10000</ion-option>
+					    <ion-option value=">=10000|<=15000">$10000 - $15000</ion-option>
+					    <ion-option value=">=15000|<=25000">$15000 - $25000</ion-option>
+					    <ion-option value=">=25000|<=50000">$25000 - $50000</ion-option>
+					    <ion-option value=">=50000|<=75000">$50000 - $75000</ion-option>
+					    <ion-option value=">=75000|<=100000">$75000 - $100000</ion-option>
+					    <ion-option value=">=100000">More than $100000</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>Area</ion-label>
+					  <ion-select formControlName="room_area">
+					  	<ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option value="<=50">less than 50 sqaure feet</ion-option>
+					    <ion-option value=">=50|<=100">50-100 sqaure feet</ion-option>
+					    <ion-option value=">=100|<=250">100-250 sqaure feet</ion-option>
+					    <ion-option value=">=250|<=500">250-500 sqaure feet</ion-option>
+					    <ion-option value=">=500|<=1000">500-1000 sqaure feet</ion-option>
+					    <ion-option value=">=1000|<=2500">1000-2500 sqaure feet</ion-option>
+					    <ion-option value=">=2500">More than 2500 sqaure feet</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>Room Shape</ion-label>
+					  <ion-select formControlName="room_shape">
+					  	<ion-option value="" [selected]="true">All</ion-option>
+					    <ion-option value="circle">circle</ion-option>
+					    <ion-option value="triangle">triangle</ion-option>
+					    <ion-option value="oval">oval</ion-option>
+					    <ion-option value="square">square</ion-option>
+					    <ion-option value="rectangle">rectangle</ion-option>
+					    <ion-option value="pentagon">pentagon</ion-option>
+					    <ion-option value="hexagon">hexagon</ion-option>
+					    <ion-option value="heptagon">heptagon</ion-option>
+					    <ion-option value="octagon">octagon</ion-option>
+					  </ion-select>
+					</ion-item>
+					<ion-item style="text-align: center;">
+						<button ion-button round (click)="dofiltering()">Apply Filter</button>
+						<button ion-button round (click)="removefiltering()">Clear Filter</button>
+					</ion-item>
+				</form>	
+			</ion-list>
+			<div style="text-align: center;">
+				<a (click)="Collapsed()">{{filterText}}</a>
+			</div>	
+		</div>
+		<div *ngIf="!noContent">
+			<ion-card class="market_card" *ngFor="let item of marketItems">
+			  	<div class="marketitem_image" *ngIf="item.featured_image != ''" (click)="gotodetail(item.id)">
+			  		<img-loader src={{baseUrl}}{{item.featured_image}} useImg=true></img-loader>
+				    <img-loader [src]="item.featured_image[0]" useImg=true *ngIf="item?.length == 1"></img-loader>
+				  	<span class="market_price">${{item.price}}</span>
+			  	</div>
+			  	<div class="marketitem_image" *ngIf="item.featured_image == ''" (click)="gotodetail(item.id)">
+			  		<img-loader src='assets/img/missing.png' useImg=true></img-loader>
+				    <img-loader [src]="item.featured_image[0]" useImg=true *ngIf="item?.length == 1"></img-loader>
+				  	<span class="market_price">${{item.price}}</span>
+			  	</div>
+			  	<ion-row>
+				    <ion-col>
+				      	<div class="colorBlue" (click)="gotodetail(item.id)">{{item.name}}</div>
+				      	<div (click)="gotoProfile(item)">By <span class="colorBlue">{{item.hp_name}}</span></div>
+				      	<div class="rating">
+							<span class="rating_inner" *ngFor="let i of [1,2,3,4,5]">
+				          		<img src="assets/img/star-on.svg" *ngIf="i <= item.avg_rating" />
+				          		<img src="assets/img/star-off.svg" *ngIf="i > item.avg_rating" />
+				        	</span>
+						</div>
+				    </ion-col>
+			  	</ion-row>
+			</ion-card>
+			<ion-item style="text-align: center;" no-lines *ngIf="limit < total_pages" (click)="loadMore()">{{loadmoreText}}</ion-item>
+		</div>
+		<nocontent *ngIf="noContent"></nocontent>
+	</div>	
+	<div *ngIf="view == 'profile'">
+		<div *ngIf="!noContent">
+			<ion-card class="market_card" *ngFor="let item of marketItems" (click)="gotodetail(item.id)">
+			  	<div class="marketitem_image" *ngIf="item.featured_image != ''">
+			  		<img-loader src={{baseUrl}}{{item.featured_image}} useImg=true></img-loader>
+				    <img-loader [src]="item.featured_image[0]" useImg=true *ngIf="item?.length == 1"></img-loader>
+				  	<span class="market_price">${{item.price}}</span>
+			  	</div>
+			  	<div class="marketitem_image" *ngIf="item.featured_image == ''">
+			  		<img-loader src='assets/img/missing.png' useImg=true></img-loader>
+				    <img-loader [src]="item.featured_image[0]" useImg=true *ngIf="item?.length == 1"></img-loader>
+				  	<span class="market_price">${{item.price}}</span>
+			  	</div>
+			  	<ion-row>
+				    <ion-col>
+				      	<div class="colorBlue">{{item.name}}</div>
+				      	<div>By <span class="colorBlue">{{item.hp_name}}</span></div>
+				      	<div class="rating">
+							<span class="rating_inner" *ngFor="let i of [1,2,3,4,5]">
+				          		<img src="assets/img/star-on.svg" *ngIf="i <= item.avg_rating" />
+				          		<img src="assets/img/star-off.svg" *ngIf="i > item.avg_rating" />
+				        	</span>
+						</div>
+				    </ion-col>
+			  	</ion-row>
+			</ion-card>
+			<ion-item style="text-align: center;" no-lines *ngIf="limit < total_pages" (click)="loadMore()">{{loadmoreText}}</ion-item>
+		</div>
+		<nocontent *ngIf="noContent"></nocontent>
+	</div>	
+</ion-content>

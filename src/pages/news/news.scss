@@ -1,0 +1,45 @@
+page-news {
+    .profilepic{
+        float:left;
+        margin:15px 10px 0px 0px !important;
+        img {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 40px;
+            height: 40px;
+        }
+    }
+    h2.title-news {
+        padding-left: 15px;
+        font-weight: bolder;
+        font-size: 2.0em;
+        color: map-get($colors,content-text-black);
+        font-family: Open sans bold !important;
+    }
+
+    ion-list{
+        ion-item.item-block{
+            border-bottom: 0.2px solid #e1dde4;
+            align-items: start;
+            h2 {
+                margin: 0 0 2px;
+                font-size: 1.3rem; 
+                color: map-get($colors,content-text-black);
+                font-family: Open sans regular !important;
+            }
+
+            a{
+                color: map-get($colors,theme-color-light-sky);
+            }
+
+            p.notification-time{
+                font-family: Open Sans Regular !important;
+                font-weight: 200;
+                color: map-get($colors,content-text-gray);
+                font-size: 1.4rem;
+            }
+
+        }
+    }
+    
+}

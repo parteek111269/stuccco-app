@@ -1,0 +1,68 @@
+page-creatnewactivity {
+     ion-spinner {
+        position: absolute;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        top: 20%;
+        right: 100px;
+    }
+    .ion-card-newactivity {
+        .activity-title{
+            font-size: 1.3em;
+            font-weight: 100;
+        }
+    }
+    a.removeForm {
+        font-size: 1.7em;
+        position: absolute;
+        top: 0px;
+        right: 15px;
+        color: #ff2a66;
+    }
+    .noimg{
+        text-align: center;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+    }
+    .camera_btn{
+        background: none;
+        font-size: 24px;
+    }
+    .center{
+        margin: auto;
+    }
+    .scroll-content{
+        display: flex;
+    }
+    .center-ios{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .progress-outer {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 0px;
+        text-align: center;
+        background-color: #f4f4f4;
+        border: 1px solid #dcdcdc;
+        color: #fff;
+        border-radius: 0px;
+    }
+ 
+    .progress-inner {
+        min-width: 15%;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 0px;
+        background-color: #ff2a66;
+        font-size: 10px;
+    }
+}

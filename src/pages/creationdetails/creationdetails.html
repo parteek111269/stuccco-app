@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>creationdetails</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <ion-title>Creation Details</ion-title>
+        <a class="backicon"(click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="ion-card">    
+        <ion-card class="ion-card view" *ngFor="let creationData of cretionDetailsALlData; let i=index;">
+            <ion-item>
+                <ion-row>
+                    <ion-col col-6>
+                          <h2>{{creationData.post_title}}</h2>   
+                    </ion-col>
+<!--                    <ion-col col-6>
+                        <label class="cover-image-text"><input type="checkbox">  Set Cover Image</label>
+                    </ion-col>-->
+                </ion-row>
+            </ion-item>
+            <img src="{{baseUrl}}{{creationData.post_image}}" (click)="inspirationdetail(creationData)">      
+            <ion-row class="app-operation">
+                <ion-col col-3>
+                    <button ion-button icon-left clear small id="like-{{creationData.id}}" (click)="postLike(creationData)" [attr.fill]="creationData.like_status ? 'liked' : null ">
+                            <ion-icon name="heart"></ion-icon>
+                        <div>Like <span class="count">{{creationData.like_count}}</span></div>
+                    </button>
+                </ion-col>
+                <ion-col col-3>
+                    <button ion-button icon-left clear small (click)="inspirationdetail(creationData)" [attr.fill]="creationData.comment_status ? 'changecolor' : null ">
+                            <ion-icon name="text"></ion-icon>
+                        <div>Comment <span class="count">{{creationData.comment_count}}</span></div>
+                    </button>
+                </ion-col>
+                <ion-col col-3>
+                    <button ion-button icon-left clear small *ngIf="loggedinUser_id ==userAuthData.id" (click)="editCreation(creationData.id)">
+                        <ion-icon class="iconcolor" icon-right name="create"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-3>
+                    <button ion-button icon-left clear small *ngIf="loggedinUser_id ==userAuthData.id" (click)="deleteCreationImage(creationData.id,i)">
+                        <ion-icon class="iconcolor" icon-right name="trash"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+</ion-content>

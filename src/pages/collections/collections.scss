@@ -1,0 +1,23 @@
+page-collections {
+	.ion-card-collections{
+        .view{
+            width: 100%;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .app-operation {
+            position: relative;
+            float: right;
+            font-size: 1.7em;
+            overflow: hidden;
+            display: block;
+            padding-right: 10px;
+            a{
+                color: #ff2a66;
+            }
+        }
+        .card {
+            margin: 3px;
+        }
+    }
+}

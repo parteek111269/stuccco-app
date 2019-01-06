@@ -1,0 +1,41 @@
+page-markettemplates {
+	.cover_slider{
+		max-height: 256px;
+		.swiper-slide img{
+			max-height:256px;
+		}
+	}
+	.justify_text{
+		text-align: justify;
+	}
+	.divider{
+		margin: 0px 15px;
+	}
+	.rating_inner{
+		display: inline-block;
+		img{
+			width: 20px;
+		}
+	}
+	.txt_right{
+		text-align: right;
+	}
+	.total_rating{
+		font-size: 12px;
+	}
+	.template_header{
+		margin: 12px;
+	}
+	.btn_font{
+		font-size: 14px;
+	}
+	.price{
+		// text-align: center;
+	    font-size: 16px;
+	    margin: 10px;
+	    p{
+	    	margin: 0px;
+	    }
+	}
+}
+    

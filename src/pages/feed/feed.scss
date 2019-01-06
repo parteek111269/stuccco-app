@@ -1,0 +1,96 @@
+page-feed {
+    .cover_slider{
+        max-height: 256px;
+        .swiper-slide img{
+            max-height:256px;
+        }
+        img{
+            margin: 0 auto;
+        }
+    }
+    .card{
+        margin-left: 0;
+        width: 100%;
+    }
+    .btn_group{
+        margin-top: 10px;
+        button{
+            border-radius: 5px;
+            background: #cc1d2a;
+        }
+    }
+    .non_slider p{
+        padding: 0px 20px;
+        margin: 0px 0px 20px 0px
+    }
+    .feed_description{
+        padding: 0px 20px 20px;
+    }
+    .feed_title{
+        padding: 0px 20px;
+        margin-bottom: 10px;
+        color: #008489;
+        font-family: Open Sans bold;
+    }
+    ion-header{
+        .sub-header{
+            .no-padd{ padding: 0 5px;}
+        }
+        .app-header-switch-area{
+            text-align:left;
+            label{
+                padding-left: 0;
+                font-size: 1.5em;
+                font-weight: bolder;
+                font-family: Open sans regular;
+                color: #363636;
+            }
+        }
+    }
+    h2.inspo-post-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: map-get($colors,content-text-black);
+        font-family: Open sans regular; 
+    }
+
+    ion-card{
+        .view {
+            margin-bottom: 15px;
+        }
+        .likes-content{
+            font-family: Open Sans regular;
+            font-size: 1.5rem;
+            font-weight: 400; 
+            color:map-get($colors,content-text-black);
+            span.count,span {
+                font-family: Open Sans regular;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color:map-get($colors,content-text-black)
+            }
+        }
+        a.add-comment-link {
+            color: map-get($colors,content-color-light-sky);
+            font-size: 1.5rem;
+            font-family: Open Sans regular;
+            padding-left: 20px;
+            padding-bottom: 10px;
+        }               
+        ion-icon.icon-heart{
+           font-size: 2.5rem;
+        }    
+    }
+    .slider-view {
+        margin-top: 2px;
+        img {
+            height: 60px;
+            width: 60px;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+    }
+    .post_image{
+        position:relative;
+    }
+}

@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon"(click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+
+        <ion-buttons end>
+            <button ion-button [disabled] = "!isMarkComepleteEnable" (click)="changeStatus()" *ngIf="projectDetail.user_type=='hired_to_do' && projectDetail.status == 'In Progress'">
+                    Mark Complete
+            </button>
+            
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <ion-list>
+        <ion-list-header class="projet-list-subheader"><b>{{projectTitle}}</b></ion-list-header>
+            <ion-item><b>Status:</b><span class="list-details-span">{{projectDetail.status}}</span>
+            </ion-item>
+            <ion-item *ngIf="projectDetail['user_type'] == 'hired_to_do'"><b>Hired by:</b><span class="list-details-span"><a (click)="goToUserProfile(projectDetail.username)">{{projectDetail.hired_by}}</a></span></ion-item>
+            <ion-item *ngIf="this.projectDetail['user_type'] =='hired_other_to_do'"><b>Designer:</b><span class="list-details-span"><a (click)="goToUserProfile(projectDetail.username)">{{projectDetail.name}}</a></span></ion-item>
+            <ion-item *ngIf="projectDetail['user_type'] == 'hired_to_do'"><b>Email:</b><span class="list-details-span"><a (click)="goToUserProfile(projectDetail.username)">{{projectDetail.email}}</a></span></ion-item>
+            <ion-item><b>Hire date:</b><span class="list-details-span">{{projectDetail.created_at}}</span></ion-item>
+            <ion-item><b>Room type: </b><span class="list-details-span">{{projectDetail.roomtype}}</span></ion-item>
+            <ion-item><b>Style preferences:</b><span class="list-details-span">{{projectDetail.style_type}}</span></ion-item>
+            <ion-item><b>Favorite Store(s):</b><span class="list-details-span details">{{projectDetail.store | addSpaceAfterComma:projectDetail['store']}}</span></ion-item>
+            <ion-item><b>Design Requirements:</b><span class="list-details-span details"> {{projectDetail.designRequirments}}</span></ion-item>
+            <!-- <ion-item><b>Room Length:</b><span class="list-details-span">{{projectDetail.roomlength}} feet</span></ion-item>
+            <ion-item><b>Room Width:</b><span class="list-details-span">{{projectDetail.roomwidth}} feet</span></ion-item>
+            <ion-item><b>Room Height:</b><span class="list-details-span">{{projectDetail.roomheight}} feet</span></ion-item>
+            <ion-item><b>Room Area:</b><span class="list-details-span">{{projectDetail.roomarea}} Square feet</span></ion-item> -->
+            <ion-item><b>Estimated Budget:</b><span class="list-details-span">{{projectDetail.budget}} (USD)</span></ion-item>
+            <ion-item><b>Room design fee:</b> <span class="list-details-span">${{projectDetail.total_amt}}</span></ion-item>
+            <ion-item><b>Total Amount:</b> <span class="list-details-span">${{projectDetail.total_amt}}</span></ion-item>
+            <ion-item-group>
+                <ion-item-divider color="light"><b>Attachments</b></ion-item-divider>
+                 <ion-slides class="image-slider" slidesPerView="5">
+                    <ion-slide *ngFor="let img of attachments">
+                        <img src="{{img.image_thumb_url}}" imageViewer='{{img.img_url}}' style="width:40px;height:40px;" class="thumb-img" />
+                    </ion-slide>
+                </ion-slides>
+            </ion-item-group>
+        </ion-list>  
+</ion-content>

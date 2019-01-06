@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>PROFILE</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header" *ngIf="showSubHeader">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar> 
+</ion-header>
+<ion-content class="app-dashboard-page">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="ios"></ion-refresher-content>
+    </ion-refresher>
+    <ion-slides pager class="cover_slider" *ngIf="covers?.length >= 1" >
+        <ion-slide *ngFor="let cover of covers">
+          <img-loader src={{baseUrl}}{{cover.image}} useImg=true></img-loader>
+        </ion-slide>
+    </ion-slides>
+    <img-loader [src]="cover.image[0]" useImg=true *ngIf="cover?.length == 1"></img-loader>
+    <ion-grid *ngIf="showProfileContent == true">
+        <ion-row class="Profilepic">
+            <ion-col col-3>
+                <img src="{{baseUrl}}{{userInfomation?.user_image}}" [hidden]="!userInfomation?.user_image">
+            </ion-col>
+            <ion-col col-7>
+                <div class="user-name">
+                    <h4>{{userInfomation.name}}</h4>
+                     <ion-row class="star-rate">
+                        <div class="star" *ngFor="let i of [1,2,3,4,5]">
+                            <img src="assets/img/star-on.svg" style="width:20px;height:20px;" *ngIf="i <= userInfomation?.rating?.avg_rate" />
+                            <img src="assets/img/star-off.svg" style="width:20px;height:20px;" *ngIf="i > userInfomation?.rating?.avg_rate"/>
+                        </div>
+                    </ion-row>
+                </div>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button clear class="edit-profile" *ngIf="userInfomation?.id==userAuthData.id" (click)="profileSettingPage()"><ion-icon name="create"></ion-icon></button>      
+            </ion-col>
+        </ion-row>
+        <ion-row class="profile-action-btn">
+            <ion-col [hidden]="(userInfomation?.stripe_account == false || userInfomation?.available == null) || userInfomation?.id==userAuthData.id">
+                <button class="instant-book-button" ion-button small round outline color="color-brown"  (click)="instantBook()">Book</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button small round outline color="color-gray" *ngIf="(userInfomation?.id!=userAuthData.id)" (click)="goToChattingPage()">Message</button>
+            </ion-col>
+            <ion-col>
+                <button [disabled] = "!isFollowEnable" ion-button small round outline color="color-gray" *ngIf="(userInfomation?.id!=userAuthData.id)" (click)="doFollow($event)">{{userFollowButtonStatus}}</button> 
+            </ion-col>
+            <!-- {{ (userInfomation?.follower_status==1)? 'Following' : 'Follow' }} -->
+            <ion-col>
+                <button ion-button small round outline color="color-gray" [hidden]="(userInfomation?.review_status  || userInfomation?.role_id==2 || userInfomation?.id==userAuthData.id)" (click)="review()">Review</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list inset *ngIf="showProfileContent == true">
+        <ion-item class="profile-component" detail-push *ngIf="userInfomation?.role_id==1" (click)="navigateTo(2,'about')">
+            About
+        </ion-item>
+        <ion-item class="profile-component" detail-push *ngIf="userInfomation?.role_id==1" (click)="navigateTo(1,'activity')">  
+            Recent Posts
+        </ion-item>
+        <ion-item class="profile-component" detail-push *ngIf="userInfomation?.role_id==1" (click)="navigateTo(7,'creations')">
+            Creations ({{userInfomation.album_count}})
+        <!-- <ion-badge item-end *ngIf="userInfomation.album_count > 0"  >{{userInfomation.album_count}}</ion-badge> -->
+        </ion-item>
+        <ion-item class="profile-component" detail-push (click)="navigateTo(6,'collections')">
+            Collections ({{userInfomation.collection_count}})
+            <!-- <ion-badge item-end *ngIf="userInfomation.collection_count > 0">{{userInfomation.collection_count}}</ion-badge> -->
+        </ion-item>
+        <ion-item class="profile-component" detail-push (click)="navigateTo(3,'likes')">
+            Likes ({{userInfomation.like_count}})
+            <!-- <ion-badge item-end *ngIf="userInfomation.like_count > 0">{{userInfomation.like_count}}</ion-badge> -->
+        </ion-item>
+        <ion-item class="profile-component" detail-push (click)="navigateTo(4,'following')">
+            Following
+        </ion-item>
+        <ion-item class="profile-component" detail-push (click)="navigateTo(5,'followers')">
+            Followers
+        </ion-item>   
+        <ion-item *ngIf="roleId == 1" class="profile-component" detail-push (click)="gotomarket()">
+            Templates
+        </ion-item> 
+    </ion-list>
+</ion-content>
+
+<!-- (click)="profileComponent(8,'market')" -->

@@ -1,0 +1,81 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>creationeditimage</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon"(click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"></ion-icon></a>
+        <ion-buttons end>
+            <button ion-button (click)="openActionSheet()">Add Photo</button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+    <form [formGroup]="formGroupActivity">
+       <ion-list inset>
+           <ion-card>
+<!--               <img src="{{baseUrl}}{{photo}}" *ngIf="showDefalutPhoto == true" style="width:100%;height:100%;"/>
+                <img src="{{photo}}" *ngIf="!showDefalutPhoto == true" style="width:100%;height:100%;"/>-->
+                <img-loader [src]="baseUrl+photo" style="width:100%;height:100%;" *ngIf="showDefalutPhoto == true" useImg=true></img-loader>
+                <img-loader [src]="photo" style="width:100%;height:100%;" *ngIf="!showDefalutPhoto == true" useImg=true></img-loader>
+           </ion-card>
+            <ion-item>
+                <ion-label color="color-black" stacked>Title*</ion-label>
+                <ion-input autocomplete="on" autocorrect="on" type="text" class="form-control" placeholder="e.g. Traditional galley kitchen" formControlName="title" clearinput></ion-input>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!formGroupActivity.controls.title.valid  && (formGroupActivity.controls.title.dirty || (!formValidState))">Please enter a valid name.</ion-item>
+            <ion-item>
+                <ion-label color="color-black" stacked>Description*</ion-label>
+                <ion-textarea autocomplete="on" autocorrect="on"  placeholder="e.g The kitchen is originally built in 1920 by..." formControlName="description" clearinput></ion-textarea>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!formGroupActivity.controls.description.valid  && (formGroupActivity.controls.description.dirty || (!formValidState))">Please enter valid description</ion-item>
+            <ion-item>
+                <ion-label class="activity-title" color="color-black" stacked>Category*</ion-label>
+                    <ion-select placeholder ="Select category" formControlName="photo_category_id">
+                        <ion-option *ngFor = "let item of catogries" [value]="item.id">  {{item.nane}} </ion-option>
+                    </ion-select>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!formGroupActivity.controls.photo_category_id.valid  && (formGroupActivity.controls.photo_category_id.dirty || (!formValidState))">Please select category</ion-item>
+            <ion-item>
+            <ion-label class="activity-title" color="color-black" stacked>Location*</ion-label>
+                <ion-select placeholder ="Select Location" formControlName="location" >
+                    <ion-option *ngFor = "let item of location" [value]="item.location"> {{item.location}} </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!formGroupActivity.controls.location.valid  && (formGroupActivity.controls.location.dirty || (!formValidState))">please select location</ion-item> 
+            <ion-item>
+                <ion-label class="activity-title" color="color-black" stacked>Keyword (separated by commas)</ion-label>
+                <ion-input autocomplete="on" autocorrect="on" placeholder="e.g. Subway tile" formControlName="tag" clearinput></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
+    <form [formGroup]="formGroupCreationAlbum">
+        <ion-list>
+            <ion-item>
+                <ion-label class="activity-title" color="color-black" stacked>Add to Creation album*</ion-label>
+                <ion-select placeholder ="Select an existing Album"  [(ngModel)]="albumId" formControlName="album_id" (ngModelChange)="optionsFn(albumId)" >
+                    <ion-option value="0">Add new creation album</ion-option>
+                    <ion-option *ngFor = "let item of creations" [value]="item.id">{{item.title}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!formGroupCreationAlbum.controls.album_id.valid  && (formGroupCreationAlbum.controls.album_id.dirty || (!formValidState))">Please select existing creation</ion-item>
+            <ion-item *ngIf="showAlbumList=='0'">
+                <ion-label class="activity-title" color="color-black" stacked>Creation Album Name*</ion-label>
+                <ion-input autocomplete="on" autocorrect="on" type="text" class="form-control" placeholder="e.g Kitchen Renovations" formControlName="title" clearinput></ion-input>
+            </ion-item>
+            <ion-item *ngIf="showAlbumList=='0'">
+                <ion-label class="activity-title" color="color-black" stacked>Description*</ion-label>
+                <ion-textarea autocomplete="on" autocorrect="on"  placeholder="e.g. Before and after photos of a total kitchen overhaul..." formControlName="description" clearinput></ion-textarea>
+            </ion-item>
+        </ion-list> 
+    </form>
+    <ion-buttons end right class="btn-slider btn-slider-right">
+        <button ion-button icon-right class="submit-btn" block type="submit" [disabled]="isDisable == true" (click)="update()">Update</button>
+    </ion-buttons>
+</ion-content>
+<div class="success-screen" *ngIf="resetPage">
+    <page-success text="Your creation image update successfully"></page-success>
+</div>

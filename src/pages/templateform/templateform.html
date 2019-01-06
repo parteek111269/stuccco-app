@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>New product</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<form [formGroup]="template" (ngSubmit)="onSubmit(template.value)">
+		<ion-list class="form-requirment">
+			<ion-item>
+                <ion-label color="color-black" stacked>Product Name</ion-label>
+                <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.name.hasError('required') && template.controls.name.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Product Description</ion-label>
+                <ion-textarea autocomplete="on" autocorrect="on" formControlName="description"></ion-textarea>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.description.hasError('required') && template.controls.description.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Price</ion-label>
+                <ion-input type="tel" formControlName="price" (keyup)="toDecimalForm(this.template , 'price')"></ion-input>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.price.hasError('required') && template.controls.price.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Room Type</ion-label>
+                <ion-select formControlName="project_category_id">
+				    <ion-option *ngFor="let item of room_type" [value]=item.id>{{item.name}}</ion-option>
+			    </ion-select>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.project_category_id.hasError('required') && template.controls.project_category_id.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Style Type</ion-label>
+                <ion-select formControlName="style_id">
+				    <ion-option *ngFor="let item of styles" [value]=item.id>{{item.name}}</ion-option>
+			    </ion-select>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.style_id.hasError('required') && template.controls.style_id.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Room Shape</ion-label>
+                <ion-select formControlName="room_shape">
+				    <ion-option value="circle">circle</ion-option>
+                    <ion-option value="triangle">triangle</ion-option>
+                    <ion-option value="oval">oval</ion-option>
+                    <ion-option value="square">square</ion-option>
+                    <ion-option value="rectangle">rectangle</ion-option>
+                    <ion-option value="pentagon">pentagon</ion-option>
+                    <ion-option value="hexagon">hexagon</ion-option>
+                    <ion-option value="heptagon">heptagon</ion-option>
+                    <ion-option value="octagon">octagon</ion-option>
+			    </ion-select>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.room_shape.hasError('required') && template.controls.room_shape.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Estimate square footage</ion-label>
+                <ion-input type="tel" formControlName="room_area" (keyup)="toDecimalForm(this.template , 'room_area')"></ion-input>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.room_area.hasError('required') && template.controls.room_area.touched">*Required</p>
+            <ion-item>
+                <ion-label color="color-black" stacked>Estimate room budget</ion-label>
+                <ion-input type="tel" formControlName="room_budget" (keyup)="toDecimalForm(this.template , 'room_budget')"></ion-input>
+            </ion-item>
+            <p class="errortxt" *ngIf="template.controls.room_budget.hasError('required') && template.controls.room_budget.touched">*Required</p>
+            <ion-item>
+                <div class="label_div">Template design (in PDF format)</div>
+                <div>
+                    <div ion-button round>Choose file</div>
+                    <span>No file chosen</span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="label_div">Template Images</div>
+                <div>
+                    <div ion-button round>Choose file</div>
+                    <span>No file chosen</span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div *ngIf="editMode">
+                    <ion-thumbnail (click)="selectImage($event, i)" class="thumb" *ngFor="let item of featuredImages; let i = index" id="{{'id'+i}}" >
+                        <img src={{baseurl}}{{item.image}} [ngClass]="item.selected ? 'active' : '' ">
+                    </ion-thumbnail>
+                </div>
+            </ion-item>
+		</ion-list>
+		<button ion-button full color="primary" [disabled]="!template.valid" type="submit">Submit</button>
+	</form>
+</ion-content>

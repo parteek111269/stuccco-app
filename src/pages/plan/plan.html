@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar>
+    	<ion-title></ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar> 
+</ion-header>
+<ion-content>
+	<ion-card class="lightBorder">
+		<ion-card-header>
+			SELECT DESIGN SERVICE TYPE
+	  	</ion-card-header>
+	  	<ion-card-content *ngFor="let plan of stripePlans" class="lightBorder">
+	    	<h3>{{plan.name}}</h3>
+	    	<h2>${{plan.amount | currency}}/room</h2>
+    		<div [innerHTML]="plan.i_provide_val"></div>
+    		<div *ngIf="plan.example_images != ''">
+    			<div>Example Designs:</div>
+	    		<ion-slides pager class="cover_slide">
+					<ion-slide *ngFor="let item of plan.example_images | slice:1">
+			        	<img-loader src={{item.image}} useImg=true></img-loader>
+			        </ion-slide>
+			    </ion-slides>
+			    <img-loader [src]="item.image[1]" useImg=true *ngIf="item?.length == 1"></img-loader>
+    		</div>
+    		<button ion-button color="light" round (click)="selectPlan(plan)">{{plan.button_text}}</button>
+	  	</ion-card-content>
+	</ion-card>
+
+	<ion-list class="lightBorder mar_10 listInfo">
+	 	<ion-item>
+	    	<ion-thumbnail item-start>
+	      		<img src={{hiredDesigner.avatar}}>
+	    	</ion-thumbnail>
+	    	<h2>{{hiredDesigner.hp_name}}</h2>
+	    	<p>{{hiredDesigner.user_category}}</p>
+	  	</ion-item>
+	  	<div class="rating_outer">
+	  		<span class="rating" *ngFor="let i of [1,2,3,4,5]">
+	            <img src="assets/img/star-on.svg" *ngIf="i <= hiredDesigner.calculated_rating" />
+	            <img src="assets/img/star-off.svg" *ngIf="i > hiredDesigner.calculated_rating" [hidden]="hiredDesigner.total_reviews == 0"/>
+	        </span>
+	        <span>{{hiredDesigner.calculated_rating}}/5 Stars</span>
+	        <p class="mar_0">Service:</p>
+        	<ion-row>
+        		<ion-col>{{serviceType}}</ion-col>
+        		<ion-col>${{servicePrice}}</ion-col>
+        	</ion-row>
+	        <hr>
+        	<ion-row>
+        		<ion-col>Total</ion-col>
+        		<ion-col>${{totalPrice}}</ion-col>
+        	</ion-row>
+		</div>
+	</ion-list>
+</ion-content>

@@ -1,0 +1,72 @@
+<ion-header no-border>
+    <ion-navbar class="login-header" hideBackButton>
+        <ion-title></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="app-login-page">
+    <button ion-button icon-start round outline color="color-gray" class="signin-signup-btn" (click)="createAccount(0)">Sign up</button>
+    <ion-grid>
+        <!-- <ion-row class="stcapp-auth-container sign-up-button">
+            <ion-col col-6>
+            </ion-col>
+            <ion-col col-6>
+                 <button ion-button icon-start round outline color="color-gray" class="signin-signup-btn" (click)="createAccount(0)">Sign up</button>
+            </ion-col>
+        </ion-row> -->
+        <ion-row class="stcapp-auth-container">
+            <ion-col col-2>
+                <img class="stcapp-img" src="assets/img/new-stuccco-icon.png"/>
+            </ion-col>
+            <ion-col col-12>
+                <p class="stcapp-name" color="theme-text-yellow">Sign in to Stuccco</p>
+            </ion-col>
+        </ion-row>
+        <!--Facebook Login section -->
+        <ion-row class="stcapp-container-row">
+            <ion-col col-12>
+                <!--(click)="doFbLogin()-->
+                <button ion-button  block round color="primary" class="fb-login button-action" (click)="doFbLogin()">
+                    Sign in with Facebook
+                </button>
+                <p class="seperator"><span>or</span></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!--Login Container-->
+    <div class="login-box">
+        <form [formGroup]="loginForm" style="text-align: center;">
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list inset>
+                        <ion-item (click)="focus(email)">
+                            <ion-label>Email:</ion-label>
+                            <ion-input #email type="text" formControlName='email' name="email"[class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)" required></ion-input>
+                            <p>sdsd</p>
+                        </ion-item>
+                        <p class="app-invaild app-error" *ngIf="!loginForm.controls.email.valid  && (loginForm.controls.email.dirty || submitAttempt)">Enter Valid Email</p>
+
+                    <ion-item (click)="focus(password)">
+                        <ion-label>Password:</ion-label>
+                        <ion-input #password type="password"  formControlName='password' name="password" [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)" required></ion-input>
+                    </ion-item>
+                    <p class="app-invaild app-error"  *ngIf="!loginForm.controls.password.valid  && (loginForm.controls.password.dirty || submitAttempt)">Password Minimum Length 8</p> 
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="login-col"> 
+                <button ion-button  block round color="color-brown" class="submit-btn button-action" [disabled]="!loginForm.valid" (click)="doAuthenticate()">
+                <ion-spinner class="spin-loader" *ngIf="showloader== true" name="ios-small"></ion-spinner>
+                Sign in with email
+                </button>
+            </ion-col>
+        </ion-row>
+        <button ion-button class="forget-btn" small clear color="fb-color" (click)="forgetPassword()">Forgot password?</button>
+    </form>
+</div>
+
+
+</ion-content>

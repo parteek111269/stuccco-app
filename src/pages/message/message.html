@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>message</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <h2 class="Message-title">Messages</h2>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown"
+                               pullingText="Pull to refresh"
+                               refreshingSpinner="ios">      
+       </ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset>
+        <ion-item-sliding *ngFor="let message of messagelistDetail;let i = index;">
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="{{baseUrl}}{{message.avatar}}" (click)="goToUserProfile(message)">
+                </ion-avatar>
+                <div (click)="conversationMessage(message.conversation_id)">
+                    <h2 class="messanger-name">{{message.name}}</h2>
+                    <h3 class="message-link"><a>{{message.message}}</a></h3>
+                    <p class="message-time">{{message.created_at}}</p>
+                </div>
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="confirmDeleteConv(message.conversation_id,i)" >
+                    <ion-icon name="trash"></ion-icon>
+                    Delete
+                </button>
+            </ion-item-options>
+            
+        </ion-item-sliding>
+    </ion-list>
+
+</ion-content> 

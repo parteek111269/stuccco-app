@@ -1,0 +1,81 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-base64-to-gallery": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "588257707983471",
+            "APP_NAME": "Stuccco",
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-filechooser": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-filepath": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.stuccco.stucccoapp"
+        }
+    }
+}

@@ -1,0 +1,184 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>setting-profile</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"></ion-icon></a>
+        <ion-title class='title'>Your Profile</ion-title>
+        <ion-spinner name="crescent" *ngIf="showloader"></ion-spinner>
+        <ion-buttons end>
+            <button ion-button [disabled]="showloader == true" (click)="save()">
+                    Save
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="user">
+        <ion-list inset>
+            <ion-card>
+                <img-loader [src]="baseUrl+ '/assets/' +photo" style="width:100%;height:100%;" *ngIf="(photo)=='medium/missing.png'" useImg=true></img-loader>
+                <img-loader [src]="baseUrl+photo" style="width:100%;height:100%;" *ngIf="(photo)!='medium/missing.png'" useImg=true></img-loader>
+            </ion-card>
+            <ion-item>
+                <ion-label color="primary" stacked>First Name</ion-label>
+                <ion-input placeholder="First name" autocomplete="on" autocorrect="on" formControlName="first_name" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.first_name.valid  && (user.controls.first_name.dirty || (!formValidState))">Please enter a valid name.</ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Last Name</ion-label>
+                <ion-input placeholder="Last name" autocomplete="on" autocorrect="on" formControlName="last_name" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.last_name.valid  && (user.controls.last_name.dirty || (!formValidState))">Please enter a valid name.</ion-item>
+            <div *ngIf="userAuthData.role == '1'">
+                <ion-item>
+                    <ion-label color="primary" stacked>Date of Birth (optional)</ion-label>
+                    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" formControlName="dob" ></ion-datetime>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.dob.valid  && (user.controls.dob.dirty || (!formValidState))">Please enter dob</ion-item>
+                <ion-item class="gender-option">
+                    <ion-label color="primary" stacked>Gender (optional)</ion-label>
+                    <ion-select formControlName="gender">
+                        <ion-option value="Male">Male</ion-option>
+                        <ion-option value="Female">Female</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.gender.valid  && (user.controls.gender.dirty || (!formValidState))">select gender</ion-item> 
+                <ion-item>
+                    <ion-label color="primary" stacked>Select Design Professional Type</ion-label>
+                    <ion-select placeholder ="Select Design Professional Type" formControlName="hp_type" >
+                        <ion-option *ngFor = "let item of professionalType" [value]="item.id" > {{item.name}} </ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.hp_type.valid  && (user.controls.hp_type.dirty || (!formValidState))">Please select Design Professional Type</ion-item> 
+                <ion-item>
+                    <ion-label color="primary" stacked>Business Name</ion-label>
+                    <ion-input placeholder="Business Name" autocomplete="on" autocorrect="on" formControlName="hp_name" clearinput></ion-input>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.hp_name.valid  && (user.controls.hp_name.dirty || (!formValidState))"> Please enter Buisness Name.</ion-item> 
+                <ion-item>
+                    <ion-label color="primary" stacked>Website Url</ion-label>
+                    <ion-input placeholder="Website" autocomplete="on" autocorrect="on" formControlName="hp_website" clearinput></ion-input>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.hp_website.valid  && (user.controls.hp_website.dirty || (!formValidState))">Please enter a valid Website URL (e.g. http://example.com)</ion-item> 
+                <ion-item>
+                    <ion-label color="primary" stacked>Work Phone Number</ion-label>
+                    <ion-input type="tel" placeholder="Phone" formControlName="hp_phone_number" clearinput></ion-input>
+                </ion-item>
+                <ion-item class="app-invaild app-error" *ngIf="!user.controls.hp_phone_number.valid  && (user.controls.hp_phone_number.dirty || (!formValidState))">enter valid phone</ion-item> 
+            </div>
+            <ion-item *ngIf="userAuthData.role == '2'">
+                <ion-label color="primary" stacked>Select Type</ion-label>
+                <ion-select placeholder="Select one" formControlName="nonhp_type">
+                    <ion-option value="1" checked="true">Own</ion-option>
+                    <ion-option value="2">Rent</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.nonhp_type.valid  && (user.controls.nonhp_type.dirty || (!formValidState))">please select</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Address (optional)</ion-label>
+                <ion-input placeholder="Address" autocomplete="on" autocorrect="on" formControlName="hp_address" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error"  *ngIf="!user.controls.hp_address.valid  && (user.controls.hp_address.dirty || (!formValidState))">Please enter Address </ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>City</ion-label>
+                <ion-input placeholder="City" autocomplete="on" autocorrect="on" formControlName="city" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.city.valid  && (user.controls.city.dirty || (!formValidState))">Please enter City</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Select State</ion-label>
+                <ion-select placeholder ="Select State" formControlName="hp_state" >
+                    <ion-option *ngFor = "let item of stateCollection" [value] = "item.id"> {{item.name}} </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.hp_state.valid  && (user.controls.hp_state.dirty || (!formValidState))">Please Select State</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Zip Code</ion-label>
+                <ion-input type="tel" placeholder="zip code" formControlName="zip_code" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!user.controls.zip_code.valid  && (user.controls.zip_code.dirty || (!formValidState))">Please enter a valid ZIP code</ion-item> 
+            <div *ngIf="userAuthData.role == '1'">    
+                <ion-item>
+                    <ion-label color="primary" stacked>About</ion-label>
+                    <ion-input placeholder="About" autocomplete="on" autocorrect="on" formControlName="hp_about" clearinput></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Our Story</ion-label>
+                    <ion-textarea  placeholder="Our Story" autocomplete="on" autocorrect="on" formControlName="our_story" clearinput></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Founding Date</ion-label>
+                    <ion-datetime placeholder="Founding Date" displayFormat="YYYY" pickerFormat="YYYY" formControlName="founding_date" ></ion-datetime>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Hours of Operation</ion-label>
+                    <ion-input placeholder="Hours of Operation (Monday - Friday 8am - 5pm EST)" autocomplete="on" autocorrect="on" formControlName="work_hours" clearinput></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Specialties (separate your specialties with commas)</ion-label>
+                    <ion-input placeholder="Specialties" autocomplete="on" autocorrect="on" formControlName="specialities" clearinput></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Member Associations (separate your member associations with commas)</ion-label>
+                    <ion-input placeholder="Member Associations" autocomplete="on" autocorrect="on" formControlName="members_associated" clearinput></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Awards (separate your awards with commas)</ion-label>
+                    <ion-input placeholder="Awards" autocomplete="on" autocorrect="on" formControlName="awards" clearinput></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="primary" stacked>Why Us?</ion-label>
+                    <ion-textarea formControlName="why_us" autocomplete="on" autocorrect="on" clearinput></ion-textarea>
+                </ion-item>
+            </div> 
+        </ion-list>
+    </form>
+    <div *ngIf="userAuthData.role == '1'">
+        <form [formGroup]="teamMember">
+            <div formArrayName="team_members">  
+                <div class="activity" *ngFor=" let profileSetting of teamMember.controls.team_members.controls; let i=index ">
+                     <div [formGroupName]="i">
+                        <ion-card>
+                            <img-loader [src]="baseUrl+ '/' +list[i].Imagesrc" [hidden]="list[i].status == true" style="width:100%;height:100%;" (click)="openAlertSheet(i)" useImg=true></img-loader>
+                            <img-loader [src]="list[i].Imagesrc" [hidden]="list[i].status == false" style="width:100%;height:100%;" (click)="openAlertSheet(i)" useImg=true></img-loader>
+                        </ion-card>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>First Name</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_first_name" clearinput></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>Last Name</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_last_name" clearinput></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>Location</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_location" clearinput></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>Role</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_role" clearinput></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>Credentials (separate credentials with commas)</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_accredentials" clearinput></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label class="activity-title" color="primary" stacked>Bio</ion-label>
+                            <ion-input type="text" class="form-control" autocomplete="on" autocorrect="on" formControlName="tm_bio" clearinput></ion-input>
+                        </ion-item>
+<!--                        <ion-item>
+                           <a href="#" (click)="remove(i)">Remove Team Member</a>
+                        </ion-item>-->
+                    </div>
+                </div>
+            </div>
+        </form>
+        <ion-buttons class="btn-slider btn-slider-right">
+            <button ion-button color="light" type="submit" (click)="addTeamMember(i)">Add A Team Member</button>
+        </ion-buttons>
+    </div>
+</ion-content>
+<div class="success-screen" *ngIf="resetPage">
+    <page-success text="Your Profile update successfully"></page-success>
+</div>

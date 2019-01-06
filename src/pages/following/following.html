@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>Followings</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="ion-card-following">
+	    <ion-card class="ion-card view" *ngFor="let followings of followingAlldata">
+	        <ion-item>
+	            <h2>{{followings.user_name}}</h2>
+	        </ion-item>
+	            <!--<img src="{{baseUrl}}{{followings.user_image}}" (click)="goToUserProfile(followings.username)">-->
+	            <img-loader [src]="baseUrl+followings.user_image" style="width:100%;height:100%;" (click)="goToUserProfile(followings.username)" useImg=true></img-loader>
+	    </ion-card> 
+	    <ion-card *ngIf="followingarea==true &&userAuthData.id==loggedinUser_id">
+	        <ion-card-content>
+	            <p>{{followingContent}}</p>
+	        </ion-card-content>
+	    </ion-card>
+	</div>
+	<ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+        <ion-infinite-scroll-content loadingSpinner="ios"></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

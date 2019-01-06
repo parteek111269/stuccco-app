@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>chatting</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'></ion-title>
+        <ion-buttons end>
+            <button ion-button class="refresh-button"  (click)="refreshPage()"><ion-icon ios="ios-refresh" md="md-refresh"></ion-icon></button>
+        </ion-buttons>
+    </ion-toolbar> 
+</ion-header>
+<ion-content class="content-style" (ionScroll)="scrollHandler($event)">
+    <div class="load-more-message" *ngIf="total_page > '1'" [hidden]="page == total_page"> 
+        <a (click)="loadMoreMessage()">Load more message</a>
+        <ion-spinner class="inspocommentspinner" name="ios" *ngIf="hasMoreComment == true"></ion-spinner>
+    </div>
+    <ion-fab bottom right  *ngIf="isScrollToBottom" >
+        <button ion-fab color="danger" class="scroll-to-bottom" (click)="scrollToBottom()" mini>
+          <ion-icon name="arrow-down"></ion-icon>
+        </button>
+    </ion-fab>
+    <ion-list no-lines>
+
+        <ion-item *ngFor="let msg of messages; let parentIndex=index;let last = last;" [hidden]="(msg.message == 'undefined' ||msg.message == '')&&msg.attachments.length == 0">
+            <div class="chatBubble">
+
+                <img class="profile-pic {{msg.position}}" src="{{baseUrl}}{{msg.avatar}}" (click)="goTouserProfile(msg)">
+                <div class="chat-bubble {{msg.position}}  {{last ? 'latest' : '' }}">
+                    <!--<img-loader [src]="baseUrl+msg.avatar" useImg=true></img-loader>-->
+                    <div class="message" *ngIf="msg.message!='undefined'">{{msg.message}} <br/></div>
+                    <div *ngIf="msg.attachments?.length>0">
+                        <p *ngFor="let attachItem of msg.attachments; let i=index">
+                            <a class="message" (click)="deleteAttachment(attachItem,parentIndex,i)" *ngIf="userAuthData.id ==msg.user_id"><ion-icon name="trash"></ion-icon></a>
+                            <a class="message" (click)="downloadFile(attachItem)">{{attachItem.filename}}</a>
+                        </p>
+                    </div>
+                    <div class="message-detail">
+                        <span>{{msg.time}}</span>
+                    </div>
+                 </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="chatPageFooter">
+    <!-- <p class="send-message-alert" *ngIf="sendingMessageStatus == true">Sending message...</p> -->
+    <ion-toolbar>
+        <div item-content>
+                <ion-textarea autocomplete="on" autocorrect="on" elastic #txtChat placeholder="Write a message" [(ngModel)]="chatText" lineHeight="5"></ion-textarea>
+        </div>
+
+        <ion-buttons right>
+            <ion-badge class="notifications-badge" color="danger" *ngIf="messageAttachStore.length>0">{{messageAttachStore.length}}</ion-badge> 
+            <button class="attachment" ion-button (click)="attachments()">
+                <ion-icon name="attach"></ion-icon>        
+            </button>
+        </ion-buttons>
+        
+        <ion-buttons right>
+            <button  class="send-button" ion-button style="min-width:45px;" (click)="sendMessage()">
+                <p *ngIf="sendingMessageStatus == false">Send</p>
+                <p *ngIf="sendingMessageStatus == true">Sending</p>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

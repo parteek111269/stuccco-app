@@ -1,0 +1,196 @@
+page-inspiration-detail {
+    ion-header{
+        .sub-header{
+            button.share-button{
+                color: map-get($colors,content-color-light-sky);
+                span.button-inner{
+                    background: transparent;
+                    font-size: 1.5rem;
+                    font-family: Open sans regular;
+                }
+            }
+        }
+    }    
+    ion-spinner {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 16px;
+    }
+
+    ion-card.ion-card-detail {
+        margin: 0;
+        width: 100%;
+        ion-item{
+            ion-label{
+                h2{
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    color: map-get($colors,content-text-black);
+                    font-family: Open sans regular; 
+                }
+            }
+        }
+
+        ion-card-content{
+            p{
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: map-get($colors,content-text-black);
+                font-family: Open sans regular; 
+            }
+        }
+
+        ion-row.app-operation{
+            button{
+                ion-icon{
+                    font-size: 2.2rem;
+                }
+                span.button-inner, div, span{
+                    font-family: Open Sans regular;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    color:map-get($colors,content-text-black)
+                }
+            }
+        }
+
+        .app-post-headers{
+            .post-title-name{
+                font-size: 1.4rem;
+                font-weight: 400;
+                font-family: Open sans Regular;
+                color: #363636;
+            }
+        }
+        .description{
+            p{
+                font-size: 1.4rem;
+                font-weight: 400;
+                font-family: Open sans Regular;
+                color: #b1bbbd;   
+            }
+        }
+        .app-post-headers{
+            position: relative;
+            ion-label{
+                position: relative;
+                button.app-share-icon{
+                    position: absolute;
+                    right: 0;
+                    z-index: 99;
+                    top: 0px;
+                    font-size: 22px;
+                    background: transparent;
+                }
+            }
+        }
+        
+        .load-more-comment{
+            display: block;
+            margin-top: 10px;
+            position: relative;
+            a{
+                color: #838383;
+                font-weight: bold;
+            }
+        }
+    }
+
+    ion-row{
+        ion-col{
+            button{
+                span{
+                    ion-icon.icon-heart{
+                        font-size: 2.5rem;
+                    }
+                    font-size: 1.7rem;
+                }             
+            }
+        }   
+    }
+
+    ion-label.comments.label{
+        font-size: 1.4rem;
+        font-weight: 400;
+        font-family: Open sans Regular;
+        color: #363636; 
+        padding-left: 15px;
+    }
+
+    /*comment box*/
+    .text-input-md{
+        border: 1px solid map-get($colors,inspo-card-icon-color-gray);
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .slider-view {
+        margin-top: 2px;
+        img {
+            height: 60px;
+            width: 60px;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+    }
+
+    .comments.style img{
+        height: 45px;
+        width:  45px;
+        border-radius: 0px;
+    }
+    
+    h2.replier_name{
+        font-size: 1.6rem;
+        font-weight: 400;
+        font-family: Open sans Regular;
+        color: #363636; 
+        line-height: 1.0;
+    }
+
+    /* Flotaing Button*/
+    .floting-view {
+        top: 0px;
+    }
+    .post_image{
+        position:relative;
+    }
+
+    /* comment Date layout */
+    p.inspirtion-details-cmt-date{
+        font-size: 1.1rem;
+        overflow: inherit;
+        line-height: normal;
+        text-overflow: inherit;
+        color: map-get($colors,inspo-card-icon-color-gray);
+        margin: 0 0 2px;
+    }
+
+    p.inspirtion-details-cmt-box {
+        overflow: inherit;
+        line-height: normal;
+        text-overflow: inherit;
+        margin: 0 0 2px;
+        font-size: 1.4rem;
+        font-weight: 400;
+        font-family: Open sans Regular;
+        color: #363636;  
+    }
+    ion-footer{
+        box-shadow: 0 0px 0px 0px #838383;
+        border-top: 1px solid #e1e1e1;
+        button.post-btn{
+            span.botton-inner{
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #363636;
+                font-family: Open sans regular;
+            }
+        }
+    }
+    .comments ion-label{
+        text-overflow: inherit;
+        white-space: inherit;
+    }
+}

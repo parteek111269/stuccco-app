@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="post" (ngSubmit)="onSubmit(post)">
+        <ion-list class="form-requirment">
+            <ion-item>
+                <ion-label stacked>Title</ion-label>
+                <ion-input type="text" formControlName="title"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div class="cust_label">Description</div>
+                <div id="contenteditable1" class="question-description mar-tb-10" contenteditable="true" [innerHTML]='des'></div>
+            </ion-item>
+        </ion-list>
+        <p class="errortxt errmsg" *ngIf="detailmissing">*Please fill both the fields</p>
+        <div class="buttons_outer">
+            <div class="add_photo" (click)="add_photo()">
+                <ion-icon name="image" *ngIf="!showloader"></ion-icon>
+                <!-- <ion-spinner name="crescent" *ngIf="showloader"></ion-spinner> -->
+                Add photo
+            </div>
+            <button ion-button round class="pull-right" type="submit">Post</button>
+        </div>
+    </form>
+</ion-content>
+<!-- [disabled]="!post.valid" -->

@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <ion-row>
+            <ion-col col-12>
+                <div class="app-header-project-title">
+                    <label class="title">Product</label>
+                </div>
+            </ion-col>
+        </ion-row>   
+    </ion-toolbar>
+</ion-header>
+<ion-content (ionScroll)="scrollHandler($event)">
+    <div *ngIf="role == 1">
+        <div class='segmentchange'>
+            <ion-segment [(ngModel)]="type" color="primary" (ionChange)="updatePage(type)">
+                <ion-segment-button value="I_have_purchased">
+                    I've Purchased
+                </ion-segment-button>
+                <ion-segment-button value="I_have_listed_for_sale" *ngIf="role == 1">
+                    I've listed for sale
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+        <div [ngSwitch]="type">
+            <ion-list *ngSwitchCase="'I_have_purchased'">
+                <ion-item *ngFor="let item of dataSetPurchased">
+                    <h2 class="designer-name">Product Name: {{item.template_name}}</h2>
+                    <h3 class="room-type">Designer: {{item.name}}</h3>
+                    <p>Room type: {{item.template_style}}</p>
+                    <p>Purchase date &amp; time: {{item.created_at}}</p>
+                    <ion-buttons class="statusButton">
+                        <button ion-button small text-capitalize (click)="productDetail(item.id, 'purchased')">
+                            View Details
+                        </button> 
+                    </ion-buttons>
+                 </ion-item>
+            </ion-list>
+            
+            <ion-list *ngSwitchCase="'I_have_listed_for_sale'">
+               <ion-item *ngFor="let item of dataSetSale">
+                    <h2 class="designer-name">Product Name: {{item.template_name}}</h2>
+                    <p>Room type: {{item.template_style}}</p>
+                    <p>Price: {{item.price}}</p>
+                    <p>Status: {{item.status}}</p>
+                    <ion-buttons class="statusButton">
+                        <button ion-button small text-capitalize (click)="productDetail(item.id, 'sold')">
+                            View Details
+                        </button> 
+                    </ion-buttons>
+                </ion-item>
+            </ion-list>
+        </div>
+    </div>
+    <div *ngIf="role == 2">
+        <ion-list>
+            <ion-item *ngFor="let item of dataSetPurchased">
+                <h2 class="designer-name">Product Name: {{item.template_name}}</h2>
+                <h3 class="room-type">Designer: {{item.name}}</h3>
+                <p>Room type: {{item.template_style}}</p>
+                <p>Purchase date &amp; time: {{item.created_at}}</p>
+                <ion-buttons class="statusButton">
+                    <button ion-button small text-capitalize (click)="productDetail(item.id, 'purchased')">
+                        View Details
+                    </button> 
+                </ion-buttons>
+             </ion-item>
+        </ion-list>
+    </div>
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event,type)"> 
+        <ion-infinite-scroll-content 
+            loadingSpinner="ios">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab *ngIf="isScrollToTop">
+        <button ion-fab color="danger" class="scroll-to-top" (click)="scrollToTop()" mini><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab>
+</ion-content>
+
+
+

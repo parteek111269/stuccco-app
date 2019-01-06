@@ -1,0 +1,71 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title></ion-title>
+  	</ion-navbar>
+  	<ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content style="background: #eeeeee;">
+	<div class="detail_section">
+		<ion-card class="detail_card">
+			<ion-card-header class="nowhitespace">
+		    	<h1 class="colorblack advice_title">{{adviceDetail.title}}</h1>
+		  	</ion-card-header>
+			<ion-item class="avatarPositioning">
+			    <ion-avatar item-start>
+			      <img src="{{baseurl}}{{adviceDetail.user_avatar}}">
+			    </ion-avatar>
+			    <h2>{{adviceDetail.display_name}}</h2>
+			    <div>
+			    	<p class="dispib">{{adviceDetail.updated}} | </p>
+			    	<!-- <p class="dispib">{{comment_count}} Comments</p> -->
+			    </div>
+			    <p class="dispib color_seagreen" *ngIf="adviceDetail.user_id == user_id">
+			    	<span class="advide_edit" (click)="editadvice()">Edit</span>
+			    	<span>|</span>
+			    	<span class="advide_del" (click)="deleteConfirm('post')">Delete</span>
+			    </p>
+			</ion-item>
+			<div [innerHTML]="adviceDetail.description"></div>
+		</ion-card>
+	</div>
+	<div class="comment_section" style="background: white;">
+		<!-- <child [greetMessage]="advice_id"></child> -->
+		<div>
+			<form [formGroup]="post" (ngSubmit)="onSubmit(post)">
+				<ion-list class="form-requirment">
+			        <ion-item>
+			        	<div class="form_label">Add your comment here</div>
+			        	<div id="contenteditable" class="question-description mar-tb-10" contenteditable="true"></div>
+			        </ion-item>
+				</ion-list>
+				<p class="errortxt errmsg" *ngIf="errFlag">*Please provide a description for your post</p>
+				<div class="buttons_outer">
+					<div class="add_photo" (click)="add_photo()">
+						<ion-icon name="image" *ngIf="!showloader"></ion-icon>
+						<!-- <ion-spinner name="crescent" *ngIf="showloader"></ion-spinner> -->
+					  	Add photo
+					</div>
+					<button ion-button round block class="postbtn" type="submit">Post</button>
+				</div>
+			</form>
+			<div class="comments style" *ngIf="total_pages > 0">
+				<ion-item class="avatarPositioning" *ngFor="let comment of comments; let index = index;" id={{comment.id}}>
+		            <ion-avatar item-start class="user_avatar">
+		                <img src={{baseurl}}{{comment.user_avatar}}>
+		            </ion-avatar>
+		            <h2>{{comment.display_name}}</h2>
+		            <p class="inspirtion-details-cmt-box whiteSpaceNormal" [innerHTML]="comment.comment"></p>
+		            <p class="inspirtion-details-cmt-date">{{comment.updated}}</p>
+		            <p class="dispib color_seagreen" *ngIf="comment.user_id == user_id">
+				    	<span class="advide_edit" (click)="editcomment(comment)">Edit</span>
+				    	<span>|</span>
+				    	<span class="advide_del" (click)="deleteConfirm(comment)">Delete</span>
+				    </p>
+		        </ion-item>
+		        <ion-item style="text-align: center;" no-lines *ngIf="limit < total_pages" (click)="loadMore()">{{loadmoreText}}</ion-item>
+			</div>
+		</div>
+	</div>
+</ion-content>

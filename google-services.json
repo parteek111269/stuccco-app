@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "225572340335",
+    "firebase_url": "https://stuccco-6e61e.firebaseio.com",
+    "project_id": "stuccco-6e61e",
+    "storage_bucket": "stuccco-6e61e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225572340335:android:c2e94044ffb7dd54",
+        "android_client_info": {
+          "package_name": "com.stuccco.stucccoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225572340335-7moftfql8jl6nltofj5jhjbcdoh5rn4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkeiRo3oDzqn9ydff8L92SWpogeazIbBY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <ion-row>
+            <ion-col col-12>
+                <div class="app-header-project-title">
+                    <label class="title">Projects</label>
+                </div>
+            </ion-col>
+        </ion-row>   
+    </ion-toolbar>
+</ion-header>
+<ion-content (ionScroll)="scrollHandler($event)">
+    <div class='segmentchange' *ngIf="user_type == 1" >
+        <ion-segment [(ngModel)]="projectlisting" color="primary" (ionChange)="updatePage(projectlisting)">
+            <ion-segment-button value="Hired_to_do">
+                Hired to do
+            </ion-segment-button>
+            <ion-segment-button value="Hired_others_to_do">
+                Hired others to do
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div [ngSwitch]="projectlisting">
+        <ion-list *ngSwitchCase="'Hired_to_do'">
+            <ion-item *ngFor="let projectDataHiredByMe of dataSetHiredBy" (click)="view_detail(projectDataHiredByMe.id,1)">
+                <h2 class="designer-name">Hired By: {{projectDataHiredByMe.name}}</h2>
+                <h3 class="room-type">Room Type: {{projectDataHiredByMe.room_type}}</h3>
+                <p>Hire Date:{{projectDataHiredByMe.created_at}}</p>
+                <ion-buttons class="statusButton">
+                    <button ion-button small text-capitalize [color]="projectDataHiredByMe.status == 'in progress' ? 'secondary' : 'light'">
+                            {{projectDataHiredByMe.status}}
+                    </button> 
+                </ion-buttons>
+             </ion-item>
+        </ion-list>
+        
+        <ion-list *ngSwitchCase="'Hired_others_to_do'">
+           <ion-item *ngFor="let hireDesigner of dataSetHiredByOther" (click)="view_detail(hireDesigner.id,2)">
+                <h2 class="designer-name">Designer: {{hireDesigner.name}}</h2>
+                <h3 class="room-type">Room Type: {{hireDesigner.room_type}}</h3>
+                <ion-buttons class="statusButton">
+                    <button ion-button small text-capitalize [color]="hireDesigner.status == 'in progress' ? 'secondary' : 'light'">
+                            {{hireDesigner.status}}
+                    </button> 
+                </ion-buttons>
+                <p>Hire Date: {{hireDesigner.created_at}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="user_type == 2">
+        <div class='hired_by_other_title' *ngIf="hasMoreData== false && dataSetHiredByOther.length == '0'">You haven't booked anyone to design a room yet</div> 
+        <ion-list>
+            <ion-item *ngFor="let hireDesigner of dataSetHiredByOther" (click)="view_detail(hireDesigner.id,2)">
+                <h2 class="designer-name">Designer: {{hireDesigner.name}}</h2>
+                <h2 class="room-type">Room Type: {{hireDesigner.room_type}}</h2>
+                <ion-buttons class="statusButton">
+                    <button ion-button small text-capitalize [color]="hireDesigner.status == 'in progress' ? 'secondary' : 'light'">
+                            {{hireDesigner.status}}
+                    </button> 
+                </ion-buttons>
+                <p>Hire Date:{{hireDesigner.created_at}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event,projectlisting)"> 
+        <ion-infinite-scroll-content 
+            loadingSpinner="ios">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab *ngIf="isScrollToTop">
+        <button ion-fab color="danger" class="scroll-to-top" (click)="scrollToTop()" mini><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab>
+</ion-content>
+
+
+

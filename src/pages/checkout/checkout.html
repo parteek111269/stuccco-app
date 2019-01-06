@@ -1,0 +1,161 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>checkout</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <ion-buttons start left class="btn-slider btn-slider-left">
+            <button ion-button icon-left (click)="prevslide()"><ion-icon name="arrow-back"></ion-icon> {{backText}}</button>
+        </ion-buttons>
+        <ion-title>{{ subheaderTitle }} <br> <span class="planInfo">{{planName}} ${{totalPrice}}</span>  </ion-title>
+         <ion-spinner name="crescent" *ngIf="showloader"></ion-spinner>
+        <ion-buttons end right class="btn-slider btn-slider-right" [hidden]="currentSlide==4">
+            <button ion-button icon-right class="submit-btn" [disabled]="!isenabled && !slideThreeForm.valid"  block type="submit" (click)="nextSlide()">Next<ion-icon name="arrow-forward"></ion-icon></button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+<ion-content>
+    <ion-slides #Slider (ionSlideDidChange)="slideChanged()" style="height: auto">
+        <ion-slide class="slide-2">
+            <ion-grid class="basement-main-div" >
+                <ion-row>
+                    <ion-col col="12">
+                        <form [formGroup]="slideForm">
+                            <ion-list  formControlName="room_type_id"  radio-group class="checkout-basement" *ngFor="let userdata of sliderData; let i=index;" [(ngModel)]="modelRoomType">
+                                       <ion-item class="main-checkout-basement" [ngClass]="{ 'active': activeSlide === userdata.id || userdata.id == modelRoomType  }">
+                                      <ion-radio value="{{userdata.id}}" color="secondary" (ionSelect)="clicked(userdata.id,userdata.name)"></ion-radio>
+                                    <ion-label>
+                                        <img src="assets/checkoutImages/{{userdata.name | spaceToUnderScore:'svg|_'}}" alt="image" ><h5>{{userdata.name}}</h5> 
+                                    </ion-label>
+                                </ion-item>
+                            </ion-list>  
+                        </form>  
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+        <ion-slide class="slide-3">
+            <ion-grid class="design-prefrence">
+                <ion-row>
+                    <ion-col col="8">
+                        <form [formGroup]="slideOneForm">
+                            <ion-list  radio-group formControlName="style_type" class="main-select-design" *ngFor="let userdata of secondSliderData" [(ngModel)]="modelStylePrefrence" >
+                                       <ion-item  class="select-design" [ngClass]="{ 'active': slideTwoActive === userdata.id || userdata.id == modelStylePrefrence }">
+                                       <ion-radio value="{{userdata.id}}" (ionSelect)="clickedSecondSlide(userdata.id,userdata.name)"></ion-radio>
+                                    <ion-label>
+                                        <img src="{{baseUrl}}/assets/project-styles/{{userdata.name | spaceToUnderScore: 'jpg|-'}}" alt="image"> 
+                                        <div class="overlay">{{userdata.name}}</div> 
+                                    </ion-label>
+                                </ion-item>
+                            </ion-list>
+                        </form> 
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+        <ion-slide class="slide-4">
+            <ion-grid class="Favourite-design">
+                <ion-row>
+                    <ion-col col="8">
+                        <form [formGroup]="slideTwoForm">
+                            <ion-list class="Favourite-store" *ngFor="let userdata of thirdSliderData; let i = index;">
+                                      <ion-item  class="main-checkout-basement">
+                                    <ion-label>
+                                        <img src="{{baseUrl}}/assets/stores/{{userdata.name | spaceToUnderScore: 'png|-'}}" alt="image">
+                                    </ion-label>
+                                    <ion-checkbox [(ngModel)]="userdata.status" [ngModelOptions]="{standalone: true}" formArray="stores" color="primary" (ionChange)="clickedThirdSlide(userdata.id, $event.checked)">{{userdata.name}}</ion-checkbox>
+                                </ion-item>
+                            </ion-list>
+                        </form> 
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+        <ion-slide class="slide-5">
+                <form [formGroup]="slideThreeForm">
+                    <ion-list class="form-requirment">
+                        <ion-item>
+                            <ion-label color="color-black" stacked>Design Requirements</ion-label>
+                            <ion-textarea autocomplete="on" autocorrect="on" formControlName="description" ></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color="color-black" stacked>Estimated Budget ($)</ion-label>
+                            <ion-input type="tel" placeholder="Estimated Budget ($)" formControlName="estimated_budget" myCurrencyFormatter (keyup)="toDecimalForm(this.slideThreeForm , 'estimated_budget')">
+                                       <!-- (keyup)="toDecimalForm(this.slideThreeForm , 'estimated_budget')" -->
+                            </ion-input>
+                        </ion-item>
+                        <ion-label class="app-invaild app-error" *ngIf="!slideThreeForm.controls.estimated_budget.valid  && (slideThreeForm.controls.estimated_budget.dirty || submitAttempt)"> Please enter valid Estimate budget.</ion-label>
+                        <div style="display: none;">
+                        <ion-item>
+                            <ion-label color="color-black" stacked>Width (in feet)</ion-label>
+                            <ion-input type="tel" placeholder="Width" formControlName="width" [class.invalid]="!slideThreeForm.controls.width.valid && (slideThreeForm.controls.width.dirty || submitAttempt)" (blur)="calculate()" clearinput (keyup)="toDecimalForm(this.slideThreeForm , 'width')"></ion-input>
+                        </ion-item>
+                        <ion-label class="app-invaild app-error" *ngIf="!slideThreeForm.controls.width.valid  && (slideThreeForm.controls.width.dirty || submitAttempt)"> Please enter valid width.</ion-label> 
+
+                    <ion-item>
+                        <ion-label color="color-black" stacked>Length (in feet)</ion-label>
+                        <ion-input type="tel" placeholder="Length" formControlName="length" [class.invalid]="!slideThreeForm.controls.length.valid && (slideThreeForm.controls.length.dirty || submitAttempt)" (blur)="calculate()" clearinput (keyup)="toDecimalForm(this.slideThreeForm , 'length')"></ion-input>
+                    </ion-item>
+                    <ion-label class="app-invaild app-error" *ngIf="!slideThreeForm.controls.length.valid  && (slideThreeForm.controls.length.dirty || submitAttempt)"> Please enter valid length.</ion-label>
+
+                    <ion-item>
+                        <ion-label color="color-black" stacked>Height (in feet)</ion-label>
+                        <ion-input type="tel" placeholder="Height" formControlName="height" [class.invalid]="!slideThreeForm.controls.height.valid && (slideThreeForm.controls.height.dirty || submitAttempt)" clearinput>
+                    </ion-input>
+                </ion-item>
+                <ion-label class="app-invaild app-error" *ngIf="!slideThreeForm.controls.height.valid  && (slideThreeForm.controls.height.dirty || submitAttempt)"> Please enter valid height.</ion-label>
+                 <ion-item>
+                    <ion-label class="calculate-area">Calculated square footage: {{sqm}} square feet</ion-label>
+                </ion-item>
+                <ion-item-group class="choose-photos">
+                    <ion-item-divider  text-left color="light">Photos of your room<a ion-button (click)="openActionSheet()">Add photos</a></ion-item-divider>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-3 *ngFor= "let photo of photos; let id = index;">
+                                    <ion-icon name="trash" (click)="deletePhoto(id)" *ngIf="photo.isUpload == true"></ion-icon>
+                                    <img src ="{{photo.Imagesrc}}" *ngIf="photo" style="width:40px;height:40px;"/>
+                                </ion-col> 
+                            </ion-row>
+                        </ion-grid>
+                </ion-item-group>
+            </div>
+            </ion-list>
+        </form>       
+    </ion-slide>
+<ion-slide>
+    <div class="form-slide">
+        <form [formGroup]="slideFourthForm">
+            <ion-list class="form-requirment">
+                <ion-item>
+                    <ion-label color="color-black" stacked>Cardholder name</ion-label>
+                    <ion-input type="text" autocomplete="on" autocorrect="on" placeholder="Cardholder name" formControlName="card_name" clearinput></ion-input>
+                </ion-item>
+                <ion-label class="app-invaild app-error" *ngIf="!slideFourthForm.controls.card_name.valid  && slideFourthForm.controls.card_name.dirty">Please enter valid Name.</ion-label>
+                <ion-item><!-- (blur)="checkValidCard()" -->
+                    <ion-label color="color-black" stacked>Card number</ion-label>
+                    <ion-input type="tel" placeholder="Card Number" formControlName="card_number" [class.invalid]="!slideFourthForm.controls.card_number.valid && ( slideFourthForm.controls.card_number.dirty || submitAttempt)" clearinput></ion-input>
+                </ion-item>
+                <!-- <ion-item class="app-invaild app-error" >Please enter valid card number.</ion-item> -->
+                <div class="app-invaild app-error crediterror" *ngIf="!slideFourthForm.controls.card_number.valid  && slideFourthForm.controls.card_number.dirty ">Please enter the valid card number</div>
+                <ion-item>
+                    <ion-label color="color-black" stacked>Card expiration date</ion-label>
+                    <ion-datetime displayFormat="MMM/YYYY" pickerFormat="MMM YYYY" min="2017" max="2035-12-31" formControlName="mnth_year"></ion-datetime>  
+                </ion-item>
+                <ion-label class="app-invaild app-error" *ngIf="!slideFourthForm.controls.mnth_year.valid  && slideFourthForm.controls.mnth_year.dirty">Expiary Date is not Valid</ion-label>
+                <ion-item><!-- (blur)="checkValidCardcvc()"  -->
+                    <ion-label color="color-black" stacked>Card security code (CVC)</ion-label>
+                    <ion-input type="tel" placeholder="CVV" formControlName="cvv" [class.invalid]="!slideFourthForm.controls.cvv.valid && (slideFourthForm.controls.cvv.dirty || submitAttempt)"  clearinput></ion-input>
+                </ion-item>
+                <ion-label class="app-invaild app-error crediterror" *ngIf="!slideFourthForm.controls.cvv.valid  && slideFourthForm.controls.cvv.dirty ">Please enter the valid cvc</ion-label>
+            </ion-list>
+            <div class="action-button">
+                <button ion-button large color="secondary" [disabled]="(checkFlag || !slideFourthForm.valid)||checkFlag" (click)="placeOrder()">Place order</button>
+            </div>
+        </form>
+    </div>
+</ion-slide>
+</ion-slides>
+</ion-content>
+<div class="success-screen" *ngIf="resetsucess">
+    <page-success text="Thank You, Your order has been placed"></page-success>
+</div>

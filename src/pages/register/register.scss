@@ -1,0 +1,150 @@
+//Header element css
+page-register{
+    ion-title .toolbar-title{
+        text-align: center;
+    }
+    .checkuser {
+        font-size: 14px;
+        color: red;
+        text-align: left;
+        margin-top: 3px;
+    }
+    .checkemail {
+        font-size: 14px;
+        color: red;
+        text-align: left;
+        margin-top: 3px;
+    }
+
+    ion-header{
+        ion-navbar{
+            div.toolbar-background{
+                background: map-get($colors,color-white);
+                border-style: none!important;
+            }
+            ion-buttons{
+                button{
+                    span.button-inner{
+                        color:map-get($colors,theme-text-color-black);
+                        font-size: 1.4rem;
+                    }
+                } 
+            }
+        }
+    }
+
+    .app-register-page {
+        background-color: map-get($colors,color-white);
+        button.signin-signup-btn{
+            padding: 0 1.0rem;
+            height:  2.0em;
+            position: absolute;
+            right: 8%;
+            top: 0;
+            span.button-inner{
+                font-family: Open Sans Regular!important;  
+                font-size: 1.5rem;
+                color: map-get($colors,theme-text-color-black);  
+            }
+        }
+        .stcapp-name{
+            color:map-get($colors,theme-text-color-black);
+            font-size: 2.7rem;
+            padding-top: 4px;
+            margin: 0;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        button.button-action{
+            span.button-inner{
+                font-family: Open Sans Regular!important;  
+                font-size: 1.6rem;  
+                color: map-get($colors,color-white);
+            }
+        }
+
+        .instructions {
+            color: map-get($colors,theme-text-gray);
+            font-size: 10px;
+            text-align: center;
+            display: block;
+        }
+
+        .seperator{
+            height: 1px;
+            display: block;
+            background: transparent;
+            position: relative;
+            margin-top: 25px;
+            span{
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                display: block;
+                width: 30px;
+                text-align: center;
+                color: map-get($colors,theme-text-color-black);
+                top: -6px;
+                background: transparent;
+                font-size: 1.2rem;
+            }
+        }
+        
+        .signup-box{
+            display: block;
+            background: map-get($colors,color-white);
+            form{
+            ion-list{
+                    margin:0;
+                    ion-item{
+                        border: 0!important;
+                        padding-left: 5px;
+                        margin-bottom: 8px;
+                        ion-label{
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+                button.forget-btn{
+                    span.button-inner{
+                        text-decoration: underline;
+                        color: map-get($colors,theme-text-color-black);
+                        font-size: 1.3rem;  
+                    }
+                }
+            }
+        }
+        .swiper-slide{
+            display: block;
+        }
+
+        .app-group-form ion-item img{
+            margin: 0 auto;
+            width: 100px;
+        }
+
+        .app-group-form ion-label{
+            text-align: center;
+        }
+        .app-group-form .tag-line{
+            color: map-get($colors,theme-text-gray);
+            white-space: normal;
+        }
+        .user-type-option ion-list-header , .gender-option ion-list-header{
+            background: transparent;
+            margin-bottom: 0;
+            text-align: left;
+        }
+        .block-3 .app-invaild.app-error {
+            padding: 0 16px;
+        }
+
+        .block-4 .app-invaild.app-error {
+            padding: 0 16px;
+        }
+    }
+
+}
+

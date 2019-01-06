@@ -1,0 +1,64 @@
+.app-home-page{
+    background-color: map-get($colors,theme-color-new-home);
+    ion-grid{
+        padding-top: 50px;
+        .stcapp-img{
+            display: block; 
+            /*width: 35%;*/ 
+            height: auto; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+        button.home-button{
+            border-color: 1px solid map-get($colors, theme-button-border);
+            margin-bottom: 12px; 
+            span,div{
+                font-family: Open Sans Regular!important;  
+                font-size: 1.6rem;  
+            }
+        }
+        button.home-button.signup{
+            span,div{ 
+                color: map-get($colors,color-white);
+            }
+        }
+
+        button.home-button.signin{ 
+            span,div{
+                color: map-get($colors,theme-text-color-black);
+            }
+        }
+
+        .stcapp-name{
+            color:map-get($colors,theme-text-color-black);
+            font-size: 2.7rem;
+            padding-top: 4px;
+            margin: 0;
+            letter-spacing: 0.1rem;
+            text-align: left;
+        }
+        
+        .stcapp-auth-container{
+            margin-top: 15px;
+        }
+
+        .stcapp-home-skip{
+            position: absolute;
+            bottom: 2.5em;
+            text-align: center;
+            margin: 0 auto;
+            float: none;
+            width: 100%;
+            display: block;
+            left: 0;
+            right: 0;
+            button{
+                span.button-inner{
+                    text-decoration: underline;
+                    color: map-get($colors,theme-text-color-black);
+                    font-size: 1.3rem;  
+                }
+            }
+        }
+    }
+}

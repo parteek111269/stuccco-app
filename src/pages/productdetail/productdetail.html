@@ -1,0 +1,33 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title>Templates</ion-title>
+  	</ion-navbar>
+  	<ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="detail_outer">
+	    <ion-list>
+			<ion-list-header>
+		    	{{title}}
+		  	</ion-list-header>
+		  	<ion-item>Product Name: {{detail.name}}</ion-item>
+		  	<ion-item>Designer/Seller: {{detail.designer}}</ion-item>
+		  	<ion-item class="normalwhitespace">Description: {{detail.description}}</ion-item>
+		  	<ion-item>Room Type: {{detail.room_type}}</ion-item>
+		  	<ion-item>Style Type: {{detail.style_type}}</ion-item>
+		  	<ion-item>Room Shape: {{detail.room_shape}}</ion-item>
+		  	<ion-item>Price: {{detail.price}}</ion-item>
+		  	<ion-item>Estimated room footage: {{detail.est_area}}</ion-item>
+		  	<ion-item>Estimated room cost: {{detail.est_cost}}</ion-item>
+		  	<ion-item>File Type: {{detail.file_type}}</ion-item>
+		  	<ion-item>File Size: {{detail.file_size}} KB</ion-item>
+		  	<ion-item class="normalwhitespace">Purchased date and time: {{detail.time}}</ion-item>
+		</ion-list>
+	</div>	
+	<div class="txt_center" *ngIf="detail.file_url">
+		<button ion-button round (click)="downloadDesign()">Download Design</button>
+	</div>
+</ion-content>
+

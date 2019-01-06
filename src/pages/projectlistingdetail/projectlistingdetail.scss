@@ -1,0 +1,35 @@
+page-projectlistingdetail {
+    ion-list ion-item ion-label {
+        white-space:normal;
+    }
+     ion-slide.swiper-slide {
+        left: 5%;
+        padding-top: 5px;
+    }
+    
+    .thumb-img {
+        padding: 0px;
+    }
+    span.list-details-span {
+    float: right;
+    }
+    span.list-details-span.details {
+        display: block;
+        float: none;
+        margin-top: 10px;
+    }
+    ion-list-header.projet-list-subheader{
+        padding-left: 16px;
+        position: relative;
+        border-bottom: 0.55px solid #c8c7cc;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        text-transform: none;
+        color: #000;
+        background: transparent;
+        ion-label{
+            white-space:normal;
+        }
+    }
+}

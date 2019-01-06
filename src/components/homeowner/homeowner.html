@@ -1,0 +1,27 @@
+<!-- Generated template for the HomeownerComponent component -->
+<div>
+   <form [formGroup]="slideThreeForm">
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>First Name</ion-label>
+                <ion-input placeholder="First name" formControlName="first_name" [class.invalid]="!slideThreeForm.controls.first_name.valid && (slideThreeForm.controls.first_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!slideThreeForm.controls.first_name.valid  && (slideThreeForm.controls.first_name.dirty || (!formValidState))">Please enter a valid name.</ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Last Name</ion-label>
+                <ion-input placeholder="Last name" formControlName="last_name" [class.invalid]="!slideThreeForm.controls.last_name.valid && (slideThreeForm.controls.last_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideThreeForm.controls.last_name.valid  && (slideThreeForm.controls.last_name.dirty || (!formValidState))">
+                Please enter a valid name
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Select User Type</ion-label>
+                <ion-select placeholder="Select one" formControlName="nonhp_type" [class.invalid]="!slideThreeForm.controls.nonhp_type.valid && (slideThreeForm.controls.nonhp_type.dirty || submitAttempt)">
+                            <ion-option value="1" checked="true">Own</ion-option>
+                    <ion-option value="2">Rent</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideThreeForm.controls.nonhp_type.valid  && (slideThreeForm.controls.nonhp_type.dirty || (!formValidState))">please select</ion-item> 
+        </ion-list> 
+    </form>
+</div>

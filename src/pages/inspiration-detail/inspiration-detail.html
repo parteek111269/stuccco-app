@@ -1,0 +1,92 @@
+<!--
+  Generated template for the InspirationDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!--Header only for spacing purpose-->
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+     <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-buttons end>
+            <button class="share-button" ion-button (click)="actionsheet()">Share</button>
+        </ion-buttons>
+     </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-card-detail">
+    <ion-card class="ion-card-detail view" >
+        <ion-item class="app-post-headers avatarPositioning">
+            <ion-avatar item-start>
+                <img-loader [src]="inspodetails.avatar" useImg="true" (click)="profileView(inspodetails)"></img-loader>
+            </ion-avatar>
+            <h2>{{inspodetails.post_title}}</h2>
+        </ion-item>
+        <ion-card-content>
+            <p>{{inspodetails.description}}</p>
+        </ion-card-content>
+
+        <div class="post_image" (swipe)="swipeEvent(inspodetails['related_images'],$event,inspodetails.id)">
+            <img-loader [src]="inspodetails.post_image" useImg ></img-loader>
+        </div>
+        <div class= "slider-view">
+            <ion-slides #signupSlider (ionSlideDidChange)="slideChanged()" slidesPerView="5">
+                <ion-slide *ngFor="let inspoRelatedImage of inspodetails['related_images']" (click)="loadRelatedPost(inspoRelatedImage)">
+                    <img src="{{baseUrl + inspoRelatedImage.url}}" >
+                </ion-slide>
+            </ion-slides>
+        </div>
+
+        <ion-row class="app-operation">
+            <ion-col center text-center col-4>
+                <button id="like-details-{{inspodetails.id}}" ion-button icon-left clear small (click)="postLike()" [attr.fill]="inspodetails.like_status ? 'liked' : null ">
+                        <ion-icon [name]="(inspodetails.like_status) ? 'heart': 'heart-outline' "></ion-icon>
+                    <div><span class="count">{{inspodetails.like_count}}</span> Likes</div>
+                </button>
+            </ion-col>
+
+            <ion-col center text-center col-4>
+                <button id="comment-details-{{inspodetails.id}}" ion-button icon-left clear small [attr.fill]="inspodetails.comment_status ? 'liked' : null " >
+                    <ion-icon name="text" [ios]="inspodetails.comment_status ? 'ios-text' : 'ios-text-outline' "></ion-icon>
+                    <div><span class="count">{{inspodetails.comment_count}}</span> Comments</div>
+                </button>
+            </ion-col>
+
+            <ion-col center text-center col-4>
+                <button id="eye-details-{{inspodetails.id}}" ion-button icon-left clear small>
+                    <ion-icon name="eye"></ion-icon>
+                    <div><span class="count">{{inspodetails.view_count}} View</span></div>
+                </button>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="comments" *ngIf="inspoDetailComment?.length > 0">
+            Comments:
+            <div class="load-more-comment" *ngIf="total_page > '1'" [hidden]="page == total_page"> 
+                <a (click)="loadMoreComment()">Load more comments</a>
+                <ion-spinner class="inspocommentspinner" name="ios" *ngIf="hasMoreComment == true"></ion-spinner>
+            </div>
+        </ion-label>
+        
+        <div class = "comments style">
+            <ion-item class="avatarPositioning" *ngFor="let inspoCommentData of inspoDetailComment;let i = index;" (click)="actionShtComment(inspoCommentData ,$event,i)">
+                <ion-avatar item-start>
+                    <img src="{{baseUrl +inspoCommentData.replier_avatar}}">
+                </ion-avatar>
+                <h2>{{inspoCommentData.replier_name}}</h2>
+                <p class="inspirtion-details-cmt-box">{{inspoCommentData.replier_comment}}</p>
+                <p class="inspirtion-details-cmt-date">{{inspoCommentData.comment_date}}</p>
+            </ion-item>
+        </div>
+    </ion-card>
+</ion-content>
+<ion-footer>
+    <ion-item>
+        <ion-input id="_commentInputBox" type="text" autocorrect = "on" autocomplete="on" [(ngModel)]="commentInput"  placeholder="Add a comment" [value]="commentInput"></ion-input>
+        <button class="post-btn" ion-button color="light" item-right (click)="postComment($event)">Post</button>
+    </ion-item>
+</ion-footer> 

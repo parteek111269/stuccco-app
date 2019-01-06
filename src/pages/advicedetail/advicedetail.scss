@@ -1,0 +1,134 @@
+page-advicedetail {
+	.dispib{
+		display: inline-block;
+	}
+	.colorblack{
+		color: black;
+	}
+    .advice_title{
+        font-size: 30px;
+        margin-bottom: .3em;
+    }
+	.nowhitespace{
+		white-space: normal;
+	}
+    .comment_section{
+        background: #fff;
+    }
+    .postbtn{
+        background: #cc1d2a;
+        margin-bottom: 50px;
+        border-radius: 5px;
+    }
+    .detail_section .detail_card{
+        margin: 0;
+        width: 100%;
+        background: white;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+    .user_avatar img{
+        border-radius: 0px;
+    }
+	.avatar{
+        height: 45px!important;
+        width:  45px!important;
+        border-radius: 0px!important;
+    }
+    p.inspirtion-details-cmt-box {
+        overflow: inherit;
+        line-height: normal;
+        text-overflow: inherit;
+        margin: 0 0 2px;
+        font-size: 1.4rem;
+        font-weight: 400;
+        font-family: Open sans Regular;
+        color: #363636;  
+    }
+    p.inspirtion-details-cmt-date{
+        font-size: 1.1rem;
+        overflow: inherit;
+        line-height: normal;
+        text-overflow: inherit;
+        color: map-get($colors,inspo-card-icon-color-gray);
+        margin: 0 0 2px;
+    }
+    .advice_img img{
+    	float: left;
+    }
+    .advide_edit{
+        margin: 0 4px 0 0;
+    }
+    .color_seagreen{
+        color: #008489;
+    }
+    .advide_del{
+        margin: 0px 4px;
+    }
+
+
+
+    .form-requirment.list-md {
+        padding-left: 10px;        
+        .calculate-area.label-md   {            
+            white-space: normal;
+        }
+    }
+    .form-requirment{
+        margin-bottom: 15px!important;
+        .calculate-area.label-ios  {
+            white-space: normal;
+        }
+    }
+    .form-requirment{
+        ion-item{
+            border: none;
+            border-bottom: 1px solid #dde1e5;
+        }
+    }
+    .padL0{
+        padding-left: 0px;
+    }
+    .form_label{
+        padding-left: 10px;
+        color: #6f7c82;
+    }
+    [contenteditable] {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+    .question-description{
+        padding:10px;
+        
+        display: block;
+        img{
+            display: block;
+        }
+        .advice_img{
+            margin: 2px 0px;
+        }
+    }
+    .errortxt{
+        margin: 0px;
+        color: #e03133;
+        padding-left: 16px;
+    }
+    .errmsg{
+        padding: 0px;
+        text-align: center;
+    }
+    .pull-right{
+        float: right;
+    }
+    .buttons_outer{
+        margin: 0px 10px;
+        .add_photo{
+            background: none;
+            color: #008489;
+            box-shadow: none;
+            display: inline-block;
+            padding: 0px 12px;
+        }
+    }
+}
+

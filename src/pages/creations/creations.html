@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>Creations</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="ion-card-creation">
+	    <ion-card class="ion-card view" *ngFor="let creative of creationsAllData;let i=index;">
+	              <ion-item>
+	            <h2>{{creative.title}}</h2>
+	        </ion-item>
+	        <img-loader [src]="baseUrl+creative.image" style="width:100%;height:100%;" (click)="goToCretaionDetail(creative.title)" useImg=true></img-loader>
+	        <ion-row class="app-operation" *ngIf="loggedinUser_id ==userAuthData.id">
+	            <ion-col col-1>
+	                <a (click)="update(creative.id,i)"> <ion-icon icon-right name="create"></ion-icon></a>
+	            </ion-col>
+	            <ion-col col-1>
+	                <a (click)="deleteAlbum(creative.id,i)"><ion-icon icon-right name="trash"></ion-icon></a>
+	            </ion-col>
+	        </ion-row>
+	    </ion-card>
+	    <ion-card *ngIf="creationarea==true">
+	        <ion-card-content>
+	            <p>{{creativeContentShow}}</p>
+	        </ion-card-content>
+	    </ion-card>
+	    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+	        <ion-infinite-scroll-content 
+	            loadingSpinner="ios">
+	        </ion-infinite-scroll-content>
+	    </ion-infinite-scroll> 
+	</div>
+</ion-content>

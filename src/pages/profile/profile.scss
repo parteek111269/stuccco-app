@@ -1,0 +1,78 @@
+page-profile {
+    ion-grid{
+        .profile-action-btn{
+            button{
+                width: 100%;
+                padding: 15px 1.2rem;
+                span.button-inner{
+                    font-family: Open Sans regular !important;
+                    font-size: 1.3rem;
+                    color: #363636;
+                    font-weight: normal;
+                }
+            }
+            button.instant-book-button{
+                span.button-inner{
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .reviewFollow .bar-button-default{
+        color: #fafafa;
+        background-color: #a68558;
+    }
+    .Profilepic img {
+        width:90px;
+        max-width: 90px;
+        height: 77px;
+        border: 2px solid;
+        border-color: white;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    a {
+        color: #488aff;
+        font-size: 1.5em;
+        padding-left: 29px;
+    }
+    .Profilepic.star img{
+        color:#ff2a66;
+    }
+    .label{
+        font-size: 1.8rem;
+        font-weight: 200;
+        color: #393939;
+        font-family: Open sans regular !important;
+    }
+    .user-name h4{
+        color: map-get($colors,content-text-black);
+        font-size: 2.0rem;
+        font-family: Open Sans regular !important;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 1px;
+        margin-top: 3px;
+        margin-right: -2px;
+    }
+    .button-round-ios {
+        border-radius: 64px;
+        padding: 0 1.2rem;
+    }
+    .button.instant-book-button{
+        color: #fff;
+        background-color: #a68558;
+        border-color: #a68558;
+    }
+    .button-outline-ios-color-brown {
+        border-color: #333333;
+        color: #313230;
+        background-color: transparent;
+        font-family: Open Sans regular !important;
+        font-weight: bold;
+    }
+    .cover_slider{
+        max-height: 256px;
+    }
+} 

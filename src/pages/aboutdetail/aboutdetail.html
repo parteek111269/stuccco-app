@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>About</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div>
+		<ion-card>
+		  	<ion-card-content>
+				<div class="about_info" *ngIf="aboutDetail.about">
+					<h1>About</h1>
+					<hr>
+					<div>{{aboutDetail.about}}</div>
+				</div>
+				<div class="about_info"  *ngIf="aboutDetail.user_styles">
+					<h2>DESIGN STYLES</h2>
+					<div>{{aboutDetail.user_styles}}</div>
+				</div>
+				<div *ngIf="isCollapsed">
+					<div class="about_info" *ngIf="aboutDetail.our_story">
+						<h2>OUR STORY</h2>
+						<div>{{aboutDetail.our_story}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.why_us">
+						<h2>WHY CHOOSE US?</h2>
+						<div>{{aboutDetail.why_us}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.specialities">
+						<h2>SPECIALTIES</h2>
+						<div>{{aboutDetail.specialities}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.hp_address || aboutDetail.city || aboutDetail.zip_code">
+						<h2>LOCATION</h2>
+						<div>{{aboutDetail.hp_address}}, {{aboutDetail.city}}, {{aboutDetail.zip_code}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.hp_phone_number">
+						<h2>TELEPHONE</h2>
+						<div>{{aboutDetail.hp_phone_number}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.work_hours">
+						<h2>HOURS OF OPERATION</h2>
+						<div>{{aboutDetail.work_hours}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.founding_date">
+						<h2>FOUNDING DATE</h2>
+						<div>{{aboutDetail.founding_date}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.members_associated">
+						<h2>MEMBER ASSOCIATIONS</h2>
+						<div>{{aboutDetail.members_associated}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.awards">
+						<h2>AWARDS</h2>
+						<div>{{aboutDetail.awards}}</div>
+					</div>
+					<div class="about_info" *ngIf="aboutDetail.primary_contact">
+						<h2>PRIMARY CONTACT NAME</h2>
+						<div>{{aboutDetail.primary_contact}}</div>
+					</div>
+				</div>
+			</ion-card-content> 
+		</ion-card>
+		<div (click)="Collapsed()" class="showmore">{{showmore}}</div> 		
+		<ion-card *ngIf="rating.avg_rate">
+			<ion-card-content>
+				<div class="about_info rating">
+					<h1>Customer Reviews</h1>
+					<hr>
+					<div class="rating">
+						<span class="rating_inner" *ngFor="let i of [1,2,3,4,5]">
+				            <img src="assets/img/star-on.svg" *ngIf="i <= rating.avg_rate" />
+				            <img src="assets/img/star-off.svg" *ngIf="i > rating.avg_rate" />
+				        </span>
+				        <div *ngIf="rating.avg_rate">{{rating.avg_rate}} out of 5 stars</div>
+					</div>
+				</div>
+				<hr>
+			</ion-card-content>
+		</ion-card>
+		<ion-list>
+			<ion-item *ngFor="let review of reviews" no-lines>
+		    	<div class="rating">
+					<span class="rating_inner" *ngFor="let i of [1,2,3,4,5]">
+			            <img src="assets/img/star-on.svg" *ngIf="i <= review.rating" />
+			            <img src="assets/img/star-off.svg" *ngIf="i > review.rating" />
+			        </span>
+				</div>
+		    	<h2>{{review.name}}</h2>
+		    	<p>{{review.description}}</p>
+		  	</ion-item>
+		  	<ion-item no-lines *ngIf="limit < total_pages" (click)="loadMore()">{{loadmoreText}}</ion-item>
+		</ion-list>
+		<!-- <div class="viewplans_btn" *ngIf="aboutDetail.about">
+			<button ion-button color="light" round (click)="viewPlans()">View Plans</button>
+		</div> -->
+	</div>
+</ion-content>

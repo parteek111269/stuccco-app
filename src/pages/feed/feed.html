@@ -1,0 +1,80 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title></ion-title>
+  	</ion-navbar>
+  	<ion-toolbar class="sub-header">
+        <ion-row>
+            <ion-col col-7 class="no-padd">
+                <div class="app-header-switch-area" (click)="scroll()">
+                    <label class="title">Feed</label>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+<ion-content (ionScroll)="scrollHandler($event)" style="background: #fbfafa;">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="ios">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row *ngIf="checktoken.userAuthData" class="btn_group">
+    	<ion-col><button ion-button full (click)="writePost()">Write a post</button></ion-col>
+    	<ion-col><button ion-button full (click)="addPhoto()">Add a photo</button></ion-col>
+    </ion-row>
+    <ion-card class="ion-card view card" *ngFor="let feed of feedData; let index = index">
+        <ion-item class="avatarPositioning">
+            <ion-avatar item-start (click)="profileVier(feed)">
+                <img src={{baseurl}}{{feed.user_avatar}} >
+            </ion-avatar>
+            <h2 class="inspo-post-title">{{feed.display_name}}</h2>
+            <p>{{feed.updated}}</p>
+        </ion-item>
+        <div *ngIf="feed.feed_type == 'image'">
+	        <div class="non_slider" *ngIf="feed.image_url">
+	        	<p>{{feed.description}}</p>
+	        	<img-loader src={{baseurl}}{{feed.image_url}} useImg=true (click)="inspirationDetail(feed.image_id, feed.user_id)"></img-loader>
+	        	<ion-row class="app-operation">
+	            <ion-col col-4>
+	                <button id="like_{{feed.image_id}}" ion-button icon-left clear small (click)="postLike(feed, index)" [attr.fill]="feed.like_status ? 'liked' : null ">
+	                    <ion-icon class="icon-heart" [name]="(feed.like_status) ? 'heart': 'heart-outline' "></ion-icon>
+	                    <div class="likes-content"><span>{{feed.likes}}</span> Likes</div>
+	                </button>
+	            </ion-col>
+	            <ion-col col-4>
+	                <button id="comment_{{feed.image_id}}" ion-button icon-left clear small (click)="inspirationDetail(feed.image_id, feed.user_id)" [attr.fill]="feed.comment_status ? 'changecolor' : null ">
+	                    <ion-icon class="icon-heart" name="text" [ios]="feed.comment_status ? 'ios-text' : 'ios-text-outline' "></ion-icon>
+	                    <div class="likes-content"><span class="count">{{feed.comments}}</span> Comments </div>
+	                </button>
+	            </ion-col>
+	        </ion-row>
+	        </div>
+	        <div class="slider_group" *ngIf="feed.images">
+	        	<ion-slides #signupSlider1 class="cover_slider" *ngIf="feed.images?.length >= 1">
+	        		<ion-slide *ngFor="let item of feed.images" (click)="inspirationDetail(item.id, feed.user_id)">
+	          			<img-loader *ngIf="item.image != ''" src={{baseurl}}{{item.image}} useImg=true>	</img-loader>
+	        		</ion-slide>
+	    		</ion-slides>
+	    		<div class="slider-view">
+	    			<ion-slides #signupSlider (ionSlideDidChange)="slideChanged()" slidesPerView="5">
+	                	<ion-slide *ngFor="let item of feed.images; let index =index" (click)="thumbclick(index)">
+	                    	<img src={{baseurl}}{{item.image}}>
+	                	</ion-slide>
+	            	</ion-slides>
+	            </div>
+	        </div>
+	    </div>
+	    <div *ngIf="feed.feed_type == 'advice'" (click)="adviceDetail(feed.advice_id)">
+	    	<h1 class="feed_title">{{feed.title}}</h1>
+	    	<p class="feed_description" [innerHTML]="feed.description"></p>
+	    </div>
+    </ion-card>
+    <!-- <ion-fab *ngIf="isScrollToTop">
+        <button ion-fab color="danger" class="scroll-to-top" mini><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab> -->
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+        <ion-infinite-scroll-content loadingSpinner="ios"></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>
+<!-- {{plainText(feed.description)}} -->

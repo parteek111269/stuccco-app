@@ -1,0 +1,42 @@
+page-message {
+	img {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 12px;
+    }
+    h2.Message-title {
+        padding-left: 15px;
+        font-weight: bolder;
+        font-size: 2.0em;
+        font-family: Open sans bold;
+        color: map-get($colors,content-text-black);
+    }
+    
+    .list[inset] .item {
+        border-bottom: 0.2px solid map-get($colors,content-border-line-gray);
+    }
+	
+    h2.messanger-name{
+    	font-weight: 600;
+    	font-size: 1.3rem;
+    	font-family: Open sans regular;
+        color: map-get($colors,content-text-black-heading);																																																																																																																																																																																																																																																																																																																																																																																																																									
+    }
+    h3.message-link a{
+		color:	map-get($colors,content-text-black);
+		font-size: 1.3rem;
+		font-weight: 400;
+		font-family: Open sans regular;
+		white-space: normal;
+	}
+	p.message-time {
+	    font-family: Open Sans Regular;
+	    font-weight: 200;
+	    color: map-get($colors,content-text-gray);
+	    font-size: 1.3rem;
+	}
+
+}

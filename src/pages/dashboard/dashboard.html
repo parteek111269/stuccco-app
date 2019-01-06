@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" (click)="goToHome()"> 
+            </div>
+        </ion-title>
+        <!-- *ngIf="userToken!=null &&userAuthData.role == '1' " -->
+        <button *ngIf="userToken != null" ion-button class="camera-btn" color="light" icon-only (click)="camera()">
+            <ion-icon name="camera-outline" ios="ios-camera-outline" md="md-camera"></ion-icon>
+        </button>
+        <button class="app-menu-toggle" ion-button icon-only menuToggle right>
+            <ion-icon name="ios-menu-outline"></ion-icon> 
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-tabs [selectedIndex]="mySelectedIndex" #dashboardTabs>
+    <ion-tab [root]="tab4Root" tabTitle="FEED" tabIcon=paper></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="TEMPLATES" tabIcon={{iconMarket}} *ngIf="userToken!=null">
+    </ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="{{desginer}}" tabIcon={{iconDesigner}}></ion-tab>
+    <ion-tab [root]="tab1Root" title="Inspiration" tabTitle="{{inspo}}" tabIcon={{iconInspo}} *ngIf="userToken!=null" class="settingicon"></ion-tab>
+    <ion-tab [root]="tab5Root" tabTitle="Project" tabIcon="mail" *ngIf="userToken!=null" class="Project"></ion-tab>
+    <ion-tab [root]="tab6Root" tabTitle="Profiler" tabIcon="mail" *ngIf="userToken!=null" class="Profliepage"></ion-tab>
+    <ion-tab [root]="tab7Root" tabTitle="Camera" tabIcon="camera" *ngIf="userToken!=null" class="cameraicon"></ion-tab>
+    <ion-tab [root]="tab8Root" tabTitle="Settings" tabIcon="settings" *ngIf="userToken!=null" class="settingicon"></ion-tab>
+    <ion-tab [root]="tab9Root" [rootParams]="notificationCount" tabTitle="Notifications" tabIcon="notifications" *ngIf="userToken!=null" class="settingicon"></ion-tab>
+    <ion-tab [root]="tab10Root" [rootParams]="notificationCount" tabTitle="{{message}}" tabIcon={{iconMessage}} *ngIf="userToken!=null" tabBadge="{{unReadMsgCount}}" tabBadgeStyle="danger"> 
+    </ion-tab>
+    <ion-tab [root]="tab11Root" tabTitle="Products" tabIcon="albums" *ngIf="userToken!=null" class="settingicon"></ion-tab>
+</ion-tabs>

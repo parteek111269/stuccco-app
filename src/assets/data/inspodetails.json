@@ -1,0 +1,47 @@
+        [
+		{
+                    "id":1,
+                    "user_id":15,
+                    "avatar":"http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                    "post_title": "Marty McFly",
+                    "description":"The British Use the term the english simply refused to adopt",
+                    "post_image":"https://stuccco.com/system/home_professionals/images/000/001/816/actual/00305312017_-_INTERNET.jpg?1497630415",
+                    "likes_count":12,
+                    "comments_count":4,
+                    "stick_count":15,
+                    "related_images": [
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995"
+                    ],
+                    
+                    "comments":[{
+                        "comment_id": 1,
+                        "replier_id" : 5,
+                        "replier_name" : "Rajat verma",
+                        "replier_comment" : "this is brillient",
+                        "replier_avatar" : "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "comment_date": "05/06/2017"
+                    },{
+                        "comment_id": 2,
+                        "replier_id" : 5,
+                        "replier_name" : "Rajat verma Test",
+                        "replier_comment" : "this is brillient",
+                        "replier_avatar" : "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "comment_date": "05/06/2017"
+                    },{
+                        "comment_id": 2,
+                        "replier_id" : 5,
+                        "replier_name" : "Rajat verma Test me",
+                        "replier_comment" : "this is brillient",
+                        "replier_avatar" : "http://dev.stuccco.com/system/users/avatars/000/000/004/small/IMG_0080.jpg?1476027995",
+                        "comment_date": "05/06/2017"
+                    }] 
+		},
+                                
+	]
+
+

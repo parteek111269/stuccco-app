@@ -1,0 +1,71 @@
+page-inspiration {
+
+    ion-header{
+        .sub-header{
+            .no-padd{ padding: 0 5px;}
+        }
+        .app-header-switch-area{
+            text-align:left;
+            label{
+                padding-left: 0;
+                font-size: 1.5em;
+                font-weight: bolder;
+                font-family: Open sans regular;
+                color: #363636;
+            }
+            
+            button.drop-button{
+                background: transparent;
+                font-size: 1.5rem;
+                padding-top: 6px;
+                float: right;
+                color:map-get($colors,content-color-light-sky);
+                font-family: Open sans regular;
+                ion-icon{
+                    position:relative;
+                    top:2px;
+                    font-size: 1.8rem;
+                    right: -5px;
+                    color: map-get($colors,content-color-light-sky);
+                }
+            }
+        }
+    }
+    
+
+    h2.inspo-post-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: map-get($colors,content-text-black);
+        font-family: Open sans regular; 
+    }
+
+    ion-card{
+        .view {
+            margin-bottom: 15px;
+        }
+        
+        .likes-content{
+            font-family: Open Sans regular;
+            font-size: 1.5rem;
+            font-weight: 400; 
+            color:map-get($colors,content-text-black);
+            span.count,span {
+                font-family: Open Sans regular;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color:map-get($colors,content-text-black)
+            }
+        }
+        a.add-comment-link {
+            color: map-get($colors,content-color-light-sky);
+            font-size: 1.5rem;
+            font-family: Open Sans regular;
+            padding-left: 20px;
+            padding-bottom: 10px;
+        }               
+        ion-icon.icon-heart{
+           font-size: 2.5rem;
+        }    
+    }
+}

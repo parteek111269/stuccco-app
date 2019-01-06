@@ -1,0 +1,227 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+        <ion-buttons left [hidden]="currentSlide">
+                     <button ion-button class="custom-back-button" (click)="handleBackButton()">
+                <ion-icon name="arrow-back"></ion-icon> 
+            </button>
+        </ion-buttons>
+
+        <ion-buttons start left class="btn-slider btn-slider-left" [hidden]="!currentSlide">
+            <button ion-button icon-left (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
+        </ion-buttons>
+
+        <ion-title></ion-title>
+
+        <ion-buttons end right class="btn-slider btn-slider-right" [hidden]="currentSlide<=1">
+            <button ion-button icon-right class="submit-btn" block type="submit" (click)="save()">continue & save <ion-icon name="arrow-forward"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="app-register-page">
+    <ion-slides #signupSlider (ionSlideDidChange)="slideChanged()">
+        <!--Step 1 Block-->
+        <ion-slide class="block-1">
+            <button ion-button icon-start round outline color="color-gray" class="signin-signup-btn" (click)="doLogin()">Sign in</button>
+            <ion-grid>
+                <ion-row class="stcapp-auth-container">
+                  <ion-col col-2>
+                      <img class="stcapp-img" src="assets/img/new-stuccco-icon.png"/>
+                  </ion-col>
+                  <ion-col col-12>
+                      <p class="stcapp-name" color="theme-text-yellow">Sign up for Stuccco</p>
+                  </ion-col>
+                </ion-row>
+                
+                <!--Facebook Login section -->
+                <ion-row class="stcapp-container-row">
+                    <ion-col col-12>
+                        <!--(click)="fbSignUp()"-->
+                        <button ion-button icon-start block round class="fb-login button-action" (click)="doFbSignup()">
+                            Sign up with Facebook
+                        </button>
+                        <p class="seperator"><span>or</span></p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <!--Login Container-->
+            <div class="signup-box">
+                <form [formGroup]="slideOneForm">
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-list inset>
+                                <ion-item (click)="focus(email)">
+                                    <ion-label>Email:</ion-label>
+                                    <ion-input #email type="text" formControlName="email" [readonly]="formReadOnly" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)" (blur)="onBlurMethodEmail()" required></ion-input>
+                                </ion-item>
+                                <p class="app-invaild app-error" *ngIf="!slideOneForm.controls.email.valid  && (slideOneForm.controls.email.dirty || submitAttempt)">Enter Valid Email</p>
+                                <div class="checkemail check-input-exist">{{emailExistString}}</div>
+                                <ion-item (click)="focus(username)">
+                                    <ion-label>Username:</ion-label>
+                                    <ion-input #username type="text" [readonly]="formReadOnly" [class.invalid]="!slideOneForm.controls.username.valid && (slideOneForm.controls.username.dirty || submitAttempt)" formControlName="username" (blur)="onBlurMethodUserName()" required></ion-input>
+                                </ion-item>
+                                <p class="app-invaild app-error" *ngIf="!slideOneForm.controls.username.valid && !slideOneForm.controls.username.pending && (slideOneForm.controls.username.dirty || submitAttempt)">
+                                          Sorry, that username can not be used!
+                                </p>
+                                <div class="checkuser check-input-exist">{{userName}}</div>
+
+                                <ion-item (click)="focus(password)">
+                                    <ion-label>Password:</ion-label>
+                                    <ion-input #password type="password" formControlName="password" [readonly]="formReadOnly" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)" required></ion-input>
+                                </ion-item>
+                                <p class="app-invaild app-error" *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
+                                      Password minimum length 8
+                                </p>
+
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="login-col">
+                    <button ion-button  block round color="color-brown" class="submit-btn button-action" [disabled]="!slideOneForm.valid" (click)="step1CheckPoint()">Sign up with email</button>
+                </ion-col>
+            </ion-row>
+            <button ion-button class="forget-btn" clear small color="fb-color" (click)="termAndCondition()">Term & Conditions?</button>
+        </form>
+    </div>
+
+</ion-slide>
+
+<!--Step 2 Block-->
+<ion-slide class="block-2">
+    <form [formGroup]="slideTwoForm">
+        <ion-list class="app-group-form">
+            <ion-item (click)="step2CheckPoint(1)">
+                <img src="assets/img/homeowner.png" width="20" height="20"/> 
+                <h1 class="list-heading">Homeowner</h1>
+                <p class="tag-line">I am a homeowner who is interested in home design</p>
+            </ion-item>
+            <ion-item (click)="step2CheckPoint(2)">
+                <img src="assets/img/home-pro.png" width="20" height="20"/>
+                <h1 class="list-heading">Professional</h1>
+                <p class="tag-line">I offer design services or sell home products</p>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-slide>
+
+<!--Step 3 Block-->
+<ion-slide class="block-3">
+    <form [formGroup]="slideThreeForm">
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>First Name</ion-label>
+                <ion-input placeholder="First name" formControlName="first_name" [class.invalid]="!slideThreeForm.controls.first_name.valid && (slideThreeForm.controls.first_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item  class="app-invaild app-error" *ngIf="!slideThreeForm.controls.first_name.valid  && (slideThreeForm.controls.first_name.dirty || (!formValidState))">Please enter a valid name.</ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Last Name</ion-label>
+                <ion-input placeholder="Last name" formControlName="last_name" [class.invalid]="!slideThreeForm.controls.last_name.valid && (slideThreeForm.controls.last_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideThreeForm.controls.last_name.valid  && (slideThreeForm.controls.last_name.dirty || (!formValidState))">
+                Please enter a valid name
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary"  [class.invalid]="!slideThreeForm.controls.nonhp_type.valid && (slideThreeForm.controls.nonhp_type.dirty || submitAttempt)" stacked>Select User Type</ion-label>
+                <ion-select placeholder="Select one" formControlName="nonhp_type">
+                    <ion-option value="1" checked="true">Own</ion-option>
+                    <ion-option value="2">Rent</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item class="app-invaild app-error" *ngIf="!slideThreeForm.controls.nonhp_type.valid  && (slideThreeForm.controls.nonhp_type.dirty || (!formValidState))">please select</ion-item> 
+        </ion-list> 
+    </form>
+</ion-slide>
+<ion-slide class="block-4">
+    <form [formGroup]="slideFourthForm">
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>First Name</ion-label>
+                <ion-input placeholder="First name" formControlName="first_name" [class.invalid]="!slideFourthForm.controls.first_name.valid && (slideFourthForm.controls.first_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.first_name.valid  && (slideFourthForm.controls.first_name.dirty || (!formValidState))">
+                Please enter a valid name.
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Last Name</ion-label>
+                <ion-input placeholder="Last name" formControlName="last_name" [class.invalid]="!slideFourthForm.controls.last_name.valid && (slideFourthForm.controls.last_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.last_name.valid  && (slideFourthForm.controls.last_name.dirty || (!formValidState))">
+                Please enter a valid name.
+            </ion-item>
+        </ion-list> 
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>Date of Birth (optional)</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" formControlName="dob"></ion-datetime>
+            </ion-item>
+            <!-- [class.invalid]="!slideFourthForm.controls.dob.valid && (slideFourthForm.controls.dob.dirty || submitAttempt)"  -->
+            <!-- <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.dob.valid  && (slideFourthForm.controls.dob.dirty || (!formValidState))">select Date-of-Birth</ion-item>  -->
+            <ion-item class="gender-option">
+                <ion-label color="primary" stacked>Gender (optional)</ion-label>
+                <ion-select formControlName="gender">
+                    <ion-option value="Male">Male</ion-option>
+                    <ion-option value="Female">Female</ion-option>
+                </ion-select>
+            </ion-item>
+            <!-- [class.invalid]="!slideFourthForm.controls.gender.valid && (slideFourthForm.controls.gender.dirty || submitAttempt)" -->
+            <!-- <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.gender.valid  && (slideFourthForm.controls.gender.dirty || (!formValidState))">select gender</ion-item> --> 
+        </ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" stacked>Work Phone Number</ion-label>
+                <ion-input placeholder="Phone" formControlName="hp_phone_number" [class.invalid]="!slideFourthForm.controls.hp_phone_number.valid && (slideFourthForm.controls.hp_phone_number.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_phone_number.valid  && (slideFourthForm.controls.hp_phone_number.dirty || (!formValidState))">enter valid phone</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Select Design Professional Type</ion-label>
+                <ion-select placeholder ="Select Design Professional Type" formControlName="hp_type"  [class.invalid]="!slideFourthForm.controls.hp_type.valid && (slideFourthForm.controls.hp_type.dirty || submitAttempt)">
+                    <ion-option *ngFor = "let item of profType" [value]="item" > {{item.name}} </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_type.valid  && (slideFourthForm.controls.hp_type.dirty || (!formValidState))">Please select Design Professional Type</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Business Name</ion-label>
+                <ion-input placeholder="Business Name" formControlName="hp_name" [class.invalid]="!slideFourthForm.controls.hp_name.valid && (slideFourthForm.controls.hp_name.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_name.valid  && (slideFourthForm.controls.hp_name.dirty || (!formValidState))"> Please enter Buisness Name.</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Website Url</ion-label>
+                <ion-input placeholder="Website" formControlName="hp_website" [class.invalid]="!slideFourthForm.controls.hp_website.valid && (slideFourthForm.controls.hp_website.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_website.valid  && (slideFourthForm.controls.hp_website.dirty || (!formValidState))">Please enter a valid Website URL (e.g. http://example.com)</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Address (optional)</ion-label>
+                <ion-input placeholder="Address" formControlName="hp_address" clearinput></ion-input>
+            </ion-item>
+            <!-- [class.invalid]="!slideFourthForm.controls.hp_address.valid && (slideFourthForm.controls.hp_address.dirty || submitAttempt)" -->
+           <!--  <ion-item class="app-invaild app-error"  *ngIf="!slideFourthForm.controls.hp_address.valid  && (slideFourthForm.controls.hp_address.dirty || (!formValidState))">Please enter Address </ion-item>  -->
+            <ion-item>
+                <ion-label color="primary" stacked>City</ion-label>
+                <ion-input placeholder="City" formControlName="city" [class.invalid]="!slideFourthForm.controls.city.valid && (slideFourthForm.controls.city.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.city.valid  && (slideFourthForm.controls.city.dirty || (!formValidState))">Please enter City</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Select State</ion-label>
+                <ion-select placeholder ="Select State" formControlName="hp_state" [class.invalid]="!slideFourthForm.controls.hp_state.valid && (slideFourthForm.controls.hp_state.dirty || submitAttempt)">
+                            <ion-option *ngFor = "let item of stateCollection" [value] = "item"> {{item.name}} </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_state.valid  && (slideFourthForm.controls.hp_state.dirty || (!formValidState))">Please Select State</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Zip Code</ion-label>
+                <ion-input placeholder="zip code" formControlName="zip_code" [class.invalid]="!slideFourthForm.controls.zip_code.valid && (slideFourthForm.controls.zip_code.dirty || submitAttempt)" clearinput></ion-input>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.zip_code.valid  && (slideFourthForm.controls.zip_code.dirty || (!formValidState))">Please enter ZIP code</ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>About</ion-label>
+                <ion-textarea placeholder="About" formControlName="hp_about"[class.invalid]="!slideFourthForm.controls.hp_about.valid && (slideFourthForm.controls.hp_about.dirty || submitAttempt)" clearinput></ion-textarea>
+            </ion-item>
+            <ion-item class="app-invaild app-error" *ngIf="!slideFourthForm.controls.hp_about.valid  && (slideFourthForm.controls.hp_about.dirty || (!formValidState))">Please enter something about you</ion-item> 
+        </ion-list>
+    </form> 
+    <button ion-button icon-right class="submit-btn" block type="submit" (click)="save()">continue & save</button>                           </ion-slide>        
+    </ion-slides>
+    </ion-content>

@@ -1,0 +1,33 @@
+page-plan {
+	.lightBorder{
+		border: 1px solid #d1d1d1;
+	}
+	.mar_10{
+		margin: 10px!important;
+	}
+	.mar_0{
+		margin: 0px;
+	}
+	.listInfo{
+		.item-inner{
+			border-bottom: 0px!important;
+		}
+	}	
+	.rating_outer{
+		padding: 0 15px;
+	}
+	.rating{
+        margin-right: 5px;
+        float: left;
+        img{
+            height: 15px;
+            width: 15px;
+        }
+    }
+    .cover_slider{
+		max-height: 256px;
+		.swiper-slide img{
+			max-height:256px;
+		}
+	}
+}

@@ -1,0 +1,117 @@
+page-login{
+    ion-header{
+        .toolbar-background{
+            background:map-get($colors,color-white);;
+        }
+    }
+
+    .app-login-page {
+        background-color: map-get($colors,color-white);
+        button.signin-signup-btn{
+            padding: 0 1.0rem;
+            height:  2.0em;
+            position: absolute;
+            right: 8%;
+            top: 0;
+            span.button-inner{
+                font-family: Open Sans Regular!important;  
+                font-size: 1.5rem;
+                color: map-get($colors,theme-text-color-black);  
+            }
+        }
+        // background-color: map-get($colors,color-white);
+        // button.button-action{
+        //     span.button-inner{
+        //         font-family: Open Sans Regular!important;  
+        //         font-size: 1.6rem;  
+        //         color: map-get($colors,color-white);
+        //     }
+        // }
+
+        ion-grid{
+            .sign-up-button{
+                ion-col{
+                    text-align: right;
+                    button.signin-signup-btn{
+                        padding: 0 1.0rem;
+                        height:  2.0em;
+                        span.button-inner{
+                            font-family: Open Sans Regular!important;  
+                            font-size: 1.5rem;
+                            color: map-get($colors,theme-text-color-black);  
+                        }
+                    }
+                }  
+            }
+            
+            .stcapp-name{
+                color:map-get($colors,theme-text-color-black);
+                font-size: 2.7rem;
+                padding-top: 4px;
+                margin: 0;
+                letter-spacing: 1px;
+                text-align: left;
+            }
+
+            .instructions {
+                color: map-get($colors,theme-text-gray);
+                font-size: 10px;
+                text-align: center;
+                display: block;
+            }
+            .seperator{
+                height: 1px;
+                display: block;
+                background: transparent;
+                position: relative;
+                margin-top: 25px;
+                span{
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    display: block;
+                    width: 30px;
+                    text-align: center;
+                    color: map-get($colors,theme-text-color-black);
+                    top: -6px;
+                    background: transparent;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        
+        .login-box{
+            display: block;
+            background: map-get($colors,color-white);
+            form{
+                ion-list{
+                    margin:0;
+                    ion-item{
+                        border: 0!important;
+                        padding-left: 5px;
+                        margin-bottom: 10px; 
+                        ion-label{
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+                button.forget-btn{
+                    span.button-inner{
+                        text-decoration: underline;
+                        color: map-get($colors,theme-text-color-black);
+                        font-size: 1.3rem;  
+                    }
+                }
+            }
+
+            ion-spinner.spin-loader *{
+                stroke: map-get($colors,color-white);
+                fill: map-get($colors,color-white);
+            }
+        }
+
+    }
+
+}
+

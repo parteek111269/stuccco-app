@@ -1,0 +1,66 @@
+page-writepost {
+	.form-requirment.list-md {
+		padding-left: 10px;        
+		.calculate-area.label-md   {            
+            white-space: normal;
+        }
+    }
+    .form-requirment{
+    	margin-bottom: 15px!important;
+        .calculate-area.label-ios  {
+            white-space: normal;
+        }
+    }
+    .errortxt{
+        margin: 0px;
+        color: #e03133;
+        padding-left: 16px;
+    }
+    .errmsg{
+        padding: 0px;
+        text-align: center;
+    }
+    .pull-right{
+    	float: right;
+    }
+    .buttons_outer{
+    	margin: 0px 10px;
+    	.add_photo{
+	    	background: none;
+		    color: #008489;
+		    box-shadow: none;
+            display: inline-block;
+            padding: 12px;
+	    }
+    }
+    div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+        content: attr(data-placeholder);
+        float: left;
+        margin-left: 2px;
+        color: #b3b3b3;
+    }
+    .question-description{
+        padding:10px;
+        border-bottom: 1px solid #dedede;
+        display: block;
+        img{
+            display: block;
+        }
+        .advice_img{
+            margin: 2px 0px;
+        }
+    }
+    .cust_label{
+        margin-left: 0;
+        margin-bottom: 0;
+        font-size: 1.2rem;
+        color: #999;
+        align-self: stretch;
+        width: auto;
+        max-width: 100%;
+    }
+    [contenteditable] {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+}

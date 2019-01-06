@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title>Templates</ion-title>
+  	</ion-navbar>
+  	<ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div *ngIf="templateInfo.status">
+		<ion-slides pager class="cover_slider" *ngIf="templateInfo.images?.length >= 1" >
+	        <ion-slide *ngFor="let cover of templateInfo.images">
+	          <img-loader *ngIf="cover.image != ''" src={{baseUrl}}{{cover.image}} useImg=true></img-loader>
+	        </ion-slide>
+	    </ion-slides>
+	    <img-loader [src]="cover.image[0]" useImg=true *ngIf="cover?.length == 1"></img-loader>
+	    <img-loader style="display: block;text-align: center;" src="assets/img/missing.png" useImg=true *ngIf="templateInfo.featured_image == ''"></img-loader>
+	    <div class="template_header">
+			<h2>{{templateInfo.name}}</h2>
+			<p>By <a>{{templateInfo.hp_name}}</a></p>
+	    	<div>
+	    		<span><button class="btn_font" ion-button round (click)="purchase(templateInfo)">Buy!</button></span>
+	    		<span><button class="btn_font" ion-button round (click)="goToChattingPage(templateInfo)">Message</button></span>
+	    		<span *ngIf="role == 1 && user_id == templateInfo.user_id"><button class="btn_font" ion-button round (click)="editTemplate(templateInfo)">Edit Template</button></span>
+	    	</div>
+	    	<div class="price">Price: ${{templateInfo.price}}
+	    		<p *ngIf="templateInfo.room_type">Room Type: {{templateInfo.room_type}}</p>
+	    		<p *ngIf="templateInfo.style_type">Style Type: {{templateInfo.style_type}}</p>
+	    		<p *ngIf="templateInfo.room_shape">Room Shape: {{templateInfo.room_shape}}</p>
+	    		<p *ngIf="templateInfo.square_footage">Square Footage: {{templateInfo.square_footage}}</p>
+	    		<p *ngIf="templateInfo.room_budget">Room budget: {{templateInfo.room_budget}}</p>
+	    		<!-- <p>File Types: {{templateInfo}}</p>
+	    		<p>File Size: {{templateInfo}}</p> -->
+	    	</div>
+		</div>
+		<ion-card>
+			<ion-card-header>
+		    	Template Details
+		  	</ion-card-header>
+		  	<hr class="divider">
+			<ion-card-content>
+	    		<p *ngIf="templateInfo.description" class="justify_text">{{templateInfo.description}}</p>
+	  		</ion-card-content>
+		</ion-card>
+	</div>	
+</ion-content>

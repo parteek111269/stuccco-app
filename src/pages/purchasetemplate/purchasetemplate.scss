@@ -1,0 +1,33 @@
+page-purchasetemplate {
+	.form-requirment.list-md {
+
+        padding-left: 10px;        
+
+        .calculate-area.label-md   {            
+            white-space: normal;
+
+        }
+    }
+    .form-requirment{
+
+        .calculate-area.label-ios  {
+            white-space: normal;
+
+        }
+    }
+    .card_shadow{
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)!important;
+        ion-list{
+            padding-left: 0px!important;
+        }
+        ion-item{
+            padding-left: 0px;
+        }
+    }
+    .checkout{
+        text-align: center;
+    }
+    .header{
+        font-size: 20px;
+    }
+}

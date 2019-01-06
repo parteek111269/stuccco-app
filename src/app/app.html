@@ -1,0 +1,22 @@
+<ion-menu [content]="content" side="right">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon [name]="p.icon" ios="{{p.ios}}"  item-left></ion-icon>
+            {{p.title}}
+            <span class="badge_icon" *ngIf="p.title == 'Notifications' && notificationCount > 0">{{notificationCount}}</span>
+            <span class="badge_icon" *ngIf="p.title == 'Message' && msgCount > 0">{{msgCount}}</span>
+        </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>

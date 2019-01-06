@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+            <ion-row>
+                <ion-col col-7 class="no-padd">
+                    <div class="app-header-switch-area" (click)="scroll()">
+                        <label class="title">Photos</label>
+                    </div>
+                </ion-col>
+                <ion-col col-5 class="no-padd">
+                    <div class="app-header-switch-area">
+                        <button  class="drop-button" arrow-dropdown (click)="actionsheet()" end clear outline>
+                            Switch to
+                            <ion-icon name="arrow-dropdown" ios="ios-arrow-down"></ion-icon>
+                        </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-toolbar>
+</ion-header>
+<ion-content class="ion-card" (ionScroll)="scrollHandler($event)"> 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="ios">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-card class="ion-card view" *ngFor="let inspo of users; let index = index">
+        <div>
+            <ion-item class="avatarPositioning">
+            <ion-avatar item-start>
+                <img [src]="inspo.avatar" (click)="profileView(inspo)"/>
+            </ion-avatar>
+            <h2 class="inspo-post-title">{{inspo.post_title}}</h2>
+            </ion-item>
+            <img-loader [src]="inspo.post_image"  (click)="inspirationDetail(inspo)" useImg=true></img-loader>
+            <ion-row class="app-operation">
+            <ion-col col-4>
+                <button id="like-{{inspo.id}}" ion-button icon-left clear small (click)="postLike(inspo, index)" [attr.fill]="inspo.like_status ? 'liked' : null ">
+                    <ion-icon class="icon-heart" [name]="(inspo.like_status) ? 'heart': 'heart-outline' "></ion-icon>
+                    <div class="likes-content"><span>{{inspo.like_count}}</span> Likes</div>
+                </button>
+            </ion-col>
+            <ion-col col-4>
+                <button id="comment-{{inspo.id}}" ion-button icon-left clear small (click)="inspirationDetail(inspo)" [attr.fill]="inspo.comment_status ? 'changecolor' : null ">
+                    <ion-icon class="icon-heart" name="text" [ios]="inspo.comment_status ? 'ios-text' : 'ios-text-outline' "></ion-icon>
+                    <div class="likes-content"><span class="count">{{inspo.comment_count}}</span> Comments </div>
+                </button>
+            </ion-col>
+            <ion-col col-12>
+                <a class="add-comment-link" (click)="inspirationDetail(inspo)">Add comment</a>
+            </ion-col>
+            </ion-row>
+        </div>    
+    </ion-card>
+    <ion-card *ngIf="contentShow==true">
+        <ion-card-content>
+            <p>{{inspoContent}}</p>
+        </ion-card-content>
+    </ion-card>
+    <!-- <ion-fab *ngIf="isScrollToTop">
+        <button ion-fab color="danger" class="scroll-to-top" mini><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab> -->
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+        <ion-infinite-scroll-content 
+        loadingSpinner="ios">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

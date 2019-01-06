@@ -1,0 +1,224 @@
+page-designer {
+
+    ion-header{
+        .sub-header{
+            .no-padd{ padding: 0 5px;}
+        }
+        .app-header-designer-area{
+            text-align:left;
+            label{
+                padding-left: 0;
+                font-weight: bolder;
+                font-size: 1.5em;
+                font-family: Open sans regular;
+                color: #363636;
+            }
+        }
+
+        ion-grid{
+            .header-lb{
+                float: left;
+                color: map-get($colors,content-color-light-sky);
+                margin: 2px 8px 0px 0;
+            }
+            ion-select{
+                float: left;
+                padding: 2px 0!important;
+                .select-text{
+                    color: map-get($colors,content-color-light-sky);
+                    min-width: 50px!important;
+                }
+                .select-icon-inner{
+                    left: 0px!important;
+                    margin-top: 0px!important;
+                    color: map-get($colors,content-color-light-sky)!important;
+                }
+            }
+        }
+    }
+
+    ion-card.designer-cards.card{
+        width: 100%!important;
+        margin: 0!important;
+        box-shadow: none!important;
+        margin-bottom: 15px !important;
+        
+        .person-name{
+            h2{
+                font-size: 1.5rem;
+                font-family: Open sans bold !important;
+                color: #363636;
+                line-height: 1.3;
+                padding-top: 7px;
+            }
+            
+            p.user-category{
+                font-family: open sans regular !important;
+                font-size: 1.4rem;
+                color: #363636;
+                line-height: 1.3;
+            }
+
+            .person-description{
+                button {
+                    color: map-get($colors,color-blue);
+                    background: transparent;
+                    font-size: 16px;
+                }
+                p.style-prfrences{
+                    font-size: 1.4rem;
+                    font-family: open sans regular !important;
+                    line-height: 1.3;
+                }
+            }
+        }
+        
+        
+        .rating-start{
+            ion-col{
+                padding: 0;
+            }
+            .rating{
+                margin-right: 5px;
+                float: left;
+                img{
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+            .review{
+                margin-left: 5px !important;
+                p{
+                    font-size: 1.0rem;
+                    font-family: Open sans regular;
+                    line-height: 0.5;
+                    color: map-get($colors,color-black);
+                }
+            }
+        } 
+
+        p.change{
+            font-size: 1.2rem;
+            color: #363636;
+            font-family: Open sans regular;
+            padding-top: 1.4px;
+        }
+        /*layout of designer page title */
+        p.designer-title{
+            font-size: 19px;
+            color: map-get($colors,color-black);
+            font-family: inherit;
+            text-align: center;
+        }
+        
+        .person-image{
+            position: relative;
+            img {
+                width: 90px;
+                max-width: 90px;
+                height: 80px;
+                border: 1px solid #fff;
+                border-radius: 5px;
+                overflow: hidden;
+                margin-top:8px;
+                // margin-left: 4px;
+                float:left;
+            }
+        }
+        
+        p.description {
+            font-size: 18px;
+            padding-bottom: 5px;
+        }
+
+        .button.view-profile-button{
+            color: #fff;
+        }
+        
+        p.designer-title {
+            font-size: 17px;
+            color: map-get($colors,color-black);
+            font-family: inherit;
+            text-align: center;
+            padding: 0px;
+            margin: 10px 0px 10px 0px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .designer-instant-book-title {
+            text-align: center;
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+        button.take-button {
+            background: transparent;
+            font-size: 15px;
+            color: map-get($colors,color-blue);
+            margin: 0 auto;
+            display: block;
+        }
+        .swiper-slide img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        .icon-left{
+            display: inline-block;
+            font-size: 2.2em;
+            left: 0;
+            position: relative;
+            /*color: #fcfcfc;*/
+            padding-left: 9px;
+            top: 50%;
+        }
+        
+        .icon-right{
+            display: inline-block;
+            font-size: 2.2em;
+            right: 0;
+            position: relative;
+            /*color: #fcfcfc;*/
+            padding-right: 9px;
+            top: 50%; 
+        }
+
+        .app-action-btn{
+            button{
+                padding: 18px 1.5rem;
+                width: 100%;
+                span.button-inner{
+                    font-family: Open Sans regular;
+                    font-size: 1.4rem;
+                    color: #363636;
+                    font-weight: normal;
+                }
+            }
+            button.view-profile-button{
+                span.button-inner{
+                    color: map-get($colors,color-white);
+                }
+            }
+        }
+
+    }
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+        left: 0;
+        bottom: 0;
+        height: 25px;
+        background: #fff;
+        width: 100%;
+        display: block;
+        width: 100%;
+        padding: 8px;
+    }
+    .swiper-container{
+        height: 250px;
+        background: #efefef;
+    }
+    .swiper-pagination{
+        background: #efefef!important;
+        padding: 0!important;
+    }
+} 

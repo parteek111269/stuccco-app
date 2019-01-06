@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title></ion-title>
+  	</ion-navbar>
+  	<ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<ion-card class="card_shadow">
+		<ion-card-header class="header">Payment detail</ion-card-header>
+		<ion-card-content>
+			<div class="card_content_body">
+				<form [formGroup]="stripeform" (ngSubmit)="onSubmit(stripeform.value)">
+					<ion-list no-lines class="form-requirment">
+						<ion-item>
+		                    <ion-label color="color-black" stacked>Cardholder name</ion-label>
+		                    <ion-input type="text" formControlName="card_name" placeholder="Cardholder name" clearinput></ion-input>
+		                </ion-item>
+		                <ion-label class="app-invaild app-error" *ngIf="!stripeform.controls.card_name.valid  && stripeform.controls.card_name.dirty">Please enter valid Name.</ion-label>
+						<ion-item>
+		                    <ion-label color="color-black" stacked>Card number</ion-label>
+		                    <ion-input type="tel" formControlName="card_number" placeholder="Card Number" clearinput></ion-input>
+		                </ion-item>
+		                <ion-label class="app-invaild app-error crediterror" *ngIf="!stripeform.controls.card_number.valid  && stripeform.controls.card_number.dirty ">Please enter the valid card number</ion-label>
+		                <ion-item>
+		                    <ion-label color="color-black" stacked>Card expiration date</ion-label>
+		                    <ion-datetime formControlName="exp" displayFormat="MMM/YYYY" pickerFormat="MMM YYYY" min="2017" max="2035-12-31"></ion-datetime>  
+		                </ion-item>
+		                <ion-label class="app-invaild app-error" *ngIf="!stripeform.controls.exp.valid  && stripeform.controls.exp.dirty">Expiary Date is not Valid</ion-label>
+		                <ion-item>
+		                    <ion-label color="color-black" stacked>Card security code (CVC)</ion-label>
+		                    <ion-input formControlName="cvv" type="tel" placeholder="CVV" clearinput></ion-input>
+		                </ion-item>
+		                <ion-label class="app-invaild app-error crediterror" *ngIf="!stripeform.controls.cvv.valid  && stripeform.controls.cvv.dirty ">Please enter the valid cvc</ion-label>
+					</ion-list>
+					<div class="action-button checkout">
+		                <button ion-button large color="secondary" [disabled]="!stripeform.valid" type="submit">Checkout</button>
+		            </div>
+				</form>
+			</div>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

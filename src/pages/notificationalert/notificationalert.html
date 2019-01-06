@@ -1,0 +1,29 @@
+<ion-content padding>
+    <ion-grid class="vcenter">
+        <ion-row class="stcapp-auth-container">
+            <ion-col col-2>
+                <img class="stcapp-img" src="assets/img/new-stuccco-icon.png"/>
+            </ion-col>
+            <ion-col col-12>
+                <p class="stcapp-name" color="theme-text-yellow">Turn on notifications?</p>
+                <p>We can let you know when someone messages you and notify you about other important activities.</p>
+            </ion-col>
+        </ion-row>
+        <div class="login-box">
+	        <ion-row>
+	            <ion-col class="login-col"> 
+	                <div>
+	                	<button ion-button  round round color="color-brown" class="submit-btn button-action" (click)="alertprompt()">
+		                Yes notify me
+		                </button>
+	                </div>
+	                <div>
+	                	<button ion-button  round round color="" class="submit-btn button-action skip_btn" (click)="skipalertprompt()">
+		                Skip
+		                </button>
+	                </div>
+	            </ion-col>
+	        </ion-row>
+		</div>
+    </ion-grid>
+</ion-content>

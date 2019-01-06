@@ -1,0 +1,31 @@
+        [
+		{
+                    "id": 1,
+                    "status": "Completed",
+                    "hired_by": "MartyMcFly",
+                    "room_type": "Bathroom",
+                    "hire_date": 4545
+               },
+                {
+                    "id": 2,
+                    "status": "jnk",
+                    "hired_by": "Marty",
+                    "room_type": "Basement",
+                    "hire_date": 945
+		},
+                {
+                    "id": 2,
+                    "status": "Completed",
+                    "hired_by": "McFly",
+                    "room_type": "Basement",
+                    "hire_date": 94
+		},
+                {
+                    "id": 4,
+                    "status": "Inprogress",
+                    "hired_by": "Test",
+                    "room_type": "Dining Room",
+                    "hire_date": "945"
+               }
+                
+	]

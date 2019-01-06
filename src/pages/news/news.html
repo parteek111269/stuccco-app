@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <h2 class="title-news">Notifications</h2>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content 
+        pullingIcon="arrow-down"
+        pullingText="Pull to refresh"
+        refreshingSpinner="ios"
+        refreshingText=""></ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset>
+        <ion-item *ngFor="let notify of notifications">
+            <ion-avatar item-start class="profilepic">
+                <img src="{{baseUrl}}{{notify.user_img}}" (click)="userProfile(notify)"/>
+            </ion-avatar>
+            <h2 style="white-space: normal;">
+                <a (click)="userProfile(notify)" [hidden]="notify.notification_url_text == 'View project details'"  *ngIf=notify.notification_user_id >
+                    {{notify.user_profile_name}}
+                </a> 
+                {{notify.notification}}
+                <a (click)="notification(notify.notification_type, notify.notification_id, notify.username, notify.to_user_id)">{{notify.notification_url_text}}
+                </a> 
+            </h2>
+            <p class="notification-time">{{notify.time}}</p>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+        <ion-infinite-scroll-content 
+        loadingSpinner="ios">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>  
+</ion-content>

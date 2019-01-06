@@ -1,0 +1,232 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@font-face {
+    font-family: 'Open Sans Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/opensans-regular.ttf') format('truetype'), url('../assets/fonts/opensans-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans Semibold';
+    font-style: semi-bold;
+    font-weight: 600;
+    src: url('../assets/fonts/opensans-semibold.ttf') format('truetype'), url('../assets/fonts/opensans-semibold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans Bold';
+    font-style: bold;
+    font-weight: 700;
+    src: url('../assets/fonts/opensans-bold.ttf') format('truetype'), url('../assets/fonts/opensans-bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans Extrabold';
+    font-style: extra-bold;
+    font-weight: 900;
+    src: url('../assets/fonts/opensans-extrabold.ttf') format('truetype'), url('../assets/fonts/opensans-extrabold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    font-style: extra-bold;
+    font-weight: 900;
+    src: url('../assets/fonts/opensans-light.ttf') format('truetype'), url('../assets/fonts/opensans-light.woff') format('woff');
+}
+
+body, h1,h2,h3,h4,h5,p,label,span,div,input,textarea{
+    font-family: Open Sans Light; 
+}
+
+body{
+    font-size: 10px!important;
+}
+
+.auth-footer{
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top:10%;
+    .sign-col{
+        label{
+            display: inline;
+            color: map-get($colors,theme-text-gray);
+            position: relative;
+            top: 5px;
+            font-size: 16px; 
+            span.lbspan{
+                position: relative;
+                top: 5px;
+            }
+            button{
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}
+.custom-back-button{
+    font-size: 2.0rem;
+}
+
+p.app-invaild.app-error , .check-input-exist{
+    padding: 5px;
+    margin: 0px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.app-invaild.app-error {
+    color: #ff0000;
+    padding: 0; 
+
+    ion-label {
+        padding: 0;
+        margin: 0;
+        font-size: 1.2rem;
+        white-space: normal;
+    }
+
+    .item-inner{
+        border-bottom: 0;
+    }   
+}
+
+//Global Header
+ion-header{
+    ion-title{
+        text-transform: uppercase;
+    } 
+    ion-toolbar{
+        .backicon{
+            padding-left: 10px;
+            font-size: 25px;
+            font-weight: 100;
+            color: map-get($colors,color-black);
+        } 
+        span.back-text{
+            font-family: Open Sans regular !important;
+            font-size: 1.6rem;
+            color: #363636;
+            padding-left: 7px;
+            position: absolute;
+            top: 11.5px;
+        }
+    }
+    .sub-header{
+        div.toolbar-background{
+            border-width: 0;
+        }
+    }
+}
+
+//Global Tabs
+ion-tabs{
+    .tabbar{
+        border-top: 0px;
+        background: #fff;
+        .tab-button[aria-selected=true] {
+            ion-icon, span.tab-button-text{
+                color: map-get($colors,theme-color-light-sky);
+            }
+        }
+        .tab-button[aria-selected=true] {
+            ion-icon, .tab-button-icon{
+                color: map-get($colors,theme-color-light-sky);
+            }
+        }
+        .tab-button[aria-selected=false] {
+            ion-icon, span.tab-button-text{
+                color: map-get($colors,content-text-black);
+            }
+        }
+    }
+}
+
+//Global Menu
+ion-menu{
+    ion-content{
+        .list-ios > .item-block:first-child{
+            border-top: 0;
+        }
+    }
+}
+
+//Global List
+ion-list.list{
+    margin: 0!important;
+}
+
+//Global Button - Android
+button.button-md{
+    text-transform: none;
+}
+
+//global cards IOS
+ion-card{
+    border-radius: 0!important;
+    box-shadow:none!important;
+    -webkit-box-shadow: none!important;
+}
+.toolbar-ios{
+    height:44px;
+}
+.whiteSpaceNormal{
+    white-space: normal;
+}
+.avatarPositioning.item-block{
+    -webkit-box-align: baseline;
+    -webkit-align-items: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+}
+.badge_icon{
+    background-color: red;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    height: 22px;
+    width: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    float: right;
+}
+// for top spacing of the navbar
+.platform-cordova.platform-ios ion-navbar,
+.platform-cordova.platform-ios ion-app > ion-toolbar:first-child,
+.platform-cordova.platform-ios ion-app > ion-toolbar:first-child ion-title,
+.platform-cordova.platform-ios ion-app > ion-toolbar:first-child ion-segment,
+.platform-cordova.platform-ios ion-menu > ion-toolbar:first-child,
+.platform-cordova.platform-ios ion-menu > ion-toolbar:first-child ion-title,
+.platform-cordova.platform-ios ion-menu > ion-toolbar:first-child ion-segment,
+.platform-cordova.platform-ios ion-page.modal > ion-toolbar:first-child,
+.platform-cordova.platform-ios ion-page.modal > ion-toolbar:first-child ion-title,
+.platform-cordova.platform-ios ion-page.modal > ion-toolbar:first-child ion-segment {
+    padding-top: 0;
+    height: 44px;
+    min-height: 44px;
+}
+
+.platform-cordova.platform-ios ion-navbar ion-title, 
+.platform-cordova.platform-ios ion-navbar ion-segment {
+    padding-top: 0;
+}
+// padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);

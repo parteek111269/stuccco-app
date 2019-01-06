@@ -1,0 +1,33 @@
+page-reviewstyle {
+    .scroll-content{
+        overflow-x:hidden!important;
+        overflow-y:hidden!important;
+    }
+    ion-label.star-rating{
+        text-align:center;
+    }
+    .ion-card-rating{
+        .view{
+            .star-rating{
+                padding-left: 15px;
+                font-size: 1.6em;
+                font-weight: 100;
+            }
+            .stars{
+                font-size: 1.8em;
+                color:  #ff2a66;
+            }
+            .review{
+                font-size: 1.3em;
+                font-weight: 100;
+            }
+        }
+        h2 {
+            margin-top: 1.8rem;
+            font-size: 1.6rem;
+            padding-left: 12px;
+            font-family: monospace;
+            color: rgba(66, 66, 66, 0.89);
+        }
+    }   
+}

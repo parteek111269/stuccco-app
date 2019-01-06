@@ -1,0 +1,23 @@
+<ion-content padding no-bounce class="app-home-page">
+    <ion-grid>     
+        <ion-row class="stcapp-auth-container">
+            <ion-col col-2>
+                <img class="stcapp-img" src="assets/img/new-stuccco-icon.png"/>
+            </ion-col>
+            <ion-col col-12>
+                <p class="stcapp-name" color="theme-text-yellow">Welcome to Stuccco</p>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row class="stcapp-auth-container">
+            <button class="home-button signup" ion-button  block round color="color-brown" (click)="createAccount()">Sign up</button>
+            <button class="home-button signin" ion-button block round outline color="color-gray" (click)="doLogin()">Sign in</button>
+        </ion-row>
+        
+        <ion-row class="stcapp-home-skip">
+            <ion-col col-12 style="text-align: center;">
+                <button ion-button outline clear color="color-black" (click)="doSkip()">Skip for now</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

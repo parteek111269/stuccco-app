@@ -1,0 +1,33 @@
+        [
+		{
+                    "id":1,
+                    "status":"Completed",
+                    "hired_by": "Marty McFly",
+                    "room_type":"Bathroom",
+                    "hire_date":"9/11/2017"
+               },
+                {
+                    "id"2,
+                    "status":"Inprogress",
+                    "hired_by": "Marty",
+                    "room_type":"Basement",
+                    "hire_date":"9/11/2017"
+		},
+                {
+                    "id":2,
+                    "status":"Completed",
+                    "hired_by": "McFly",
+                    "room_type":"Basement",
+                    "hire_date":"9/11/2017"
+		},
+                {
+                   "id":4,
+                    "status":"Inprogress",
+                    "hired_by": "Test",
+                    "room_type":"Dining Room",
+                    "hire_date":"9/11/2017"
+                    "stick_count":10
+		}
+                
+	]
+

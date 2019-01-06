@@ -1,0 +1,17 @@
+page-settings {
+	ion-header{
+        .app-header-setting-area{
+            text-align:left;
+            label{
+                padding-left: 5px;
+                font-weight: bolder;
+                font-size: 2.0em;
+                font-family: Open sans bold;
+                color: #363636;
+            }
+        }
+    }
+	ion-item.item.item-block {
+	    padding: 0px;
+	}
+}

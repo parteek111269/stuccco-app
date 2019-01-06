@@ -1,0 +1,120 @@
+page-dashboard {
+    /*a.camera    {
+       color: #488aff;
+        position: absolute;
+        right: 40px;
+        top: 14px;
+        font-size: 1.7em;
+    }*/
+    .header .toolbar:last-child .toolbar-background {
+        //border-width: 0 0 0 0px; 
+        background: #fff;
+    }
+
+    ion-header{
+        ion-navbar.toolbar:last-child .toolbar-background {
+            //border-width: 0 0 0 0px; 
+            background: #fff;
+        }
+        //Android Case
+        ion-title.title.title-md{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            right: 0;
+            text-align: center;
+        }
+        ion-title{
+            .header-logo {
+                margin-left: -4px;
+            }
+        }
+    }
+
+    ion-navbar{
+        button.camera-btn{
+            background: transparent ! important;
+            ion-icon{
+                font-size: 4rem;
+                padding: 0 5px;
+            }
+        }
+        button.app-menu-toggle{
+            ion-icon{
+                color: #000;
+            }
+        }
+    }
+
+    .ion-card {
+        .view{
+            width: 100%;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .view:last-child{
+            margin-bottom: 60px;
+        }
+        .card-md{
+            box-shadow: none;
+        }
+    }
+    
+    .app-operation {
+        position: relative;
+        .button{
+            font-size: 1.5rem;
+            color:map-get($colors,inspo-card-icon-color-gray);
+        }
+
+        button[fill="liked"] ion-icon {
+            color: map-get($colors,pink);
+        }
+
+        button[fill="changecolor"] ion-icon {
+            color: map-get($colors,pink);
+        }
+    }
+
+    .tabs-ios, .tabs-md {
+        .tabbar {
+            a:nth-child(5){
+                display: none !important;
+            }
+            a:nth-child(6){
+                display: none !important;
+            }
+            a:nth-child(7){
+                display: none !important;
+            }
+            a:nth-child(8){
+                display: none !important;
+            }
+            a:nth-child(9){
+                display: none !important;
+            }
+            a:nth-child(10){
+                display: none !important;
+            }
+            a:nth-child(11){
+                display: none !important;
+            }
+        }
+    }
+
+    //Scroll direction indicator
+    .scroll-to-top {
+        position: fixed;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background: map-get($colors,inspo-scroll-to-Top-icon-background-color-red);
+        z-index: 999;
+        top: 80%;
+        border-radius: 100px;
+        color: map-get($colors,inspo-scroll-to-top-icon-color-white);
+    }
+}

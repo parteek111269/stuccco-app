@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>Recent Posts</ion-title>
+    </ion-toolbar>
+</ion-header>
+<!-- Generated template for the ActivityComponent component -->
+<ion-content>
+    <div class="ion-card">    
+        <ion-card class="ion-card view" *ngFor="let activeData of activityAllData">
+            <ion-item class="avatarPositioning">
+                <ion-avatar item-start>
+                    <img-loader [src]="baseUrl+activeData.avatar" (click)="goToUserProfile(activeData.user_id)" useImg=true></img-loader>
+                </ion-avatar>
+                <h2>{{activeData.post_title}}</h2>
+            </ion-item>
+         <img-loader [src]="baseUrl+activeData.post_image" useImg=true (click)="inspirationdetail(activeData.id)"></img-loader>
+            <ion-row class="app-operation">
+                <ion-col col-4>
+                    <button ion-button icon-left clear small id="like-{{activeData.id}}" (click)="postLike(activeData.id)" [attr.fill]="activeData.like_status ? 'liked' : null ">
+                            <ion-icon name="heart"></ion-icon>
+                        <div>Like <span class="count">{{activeData.like_count}}</span></div>
+                    </button>
+                </ion-col>
+                <ion-col col-4>
+                    <button ion-button icon-left clear small (click)="inspirationdetail(activeData.id)" [attr.fill]="activeData.comment_status ? 'changecolor' : null ">
+                            <ion-icon name="text"></ion-icon>
+                        <div>Comment <span class="count">{{activeData.comment_count}}</span></div>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+        <ion-card *ngIf="activitytitle==true &&userAuthData.id==user_id">
+            <ion-card-content>
+                <p>{{activityContent}}</p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>    

@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="header-logo">
+                <img alt="logo" src="assets/img/stuccco-new-logo.png" > 
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+        <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"><span class="back-text">Back</span></ion-icon></a>
+        <ion-title class='title'>Likes</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="ion-card-likes">
+	    <ion-card class="ion-card view" *ngFor="let likeByUser of likesAllData; let i = index" >
+	            <ion-item class="avatarPositioning">
+	                <ion-avatar item-start>
+	                   <img src="{{baseUrl}}{{likeByUser.avatar}}" (click)="goToUserProfile(likeByUser.user_id)">  
+	                </ion-avatar>
+	                <h2 class="likes-title">{{likeByUser.post_title}}</h2>
+	            </ion-item>
+	                <!--<img src="{{baseUrl}}{{likeByUser.post_image}}" (click)="inspirationdetail(likeByUser.id)">-->  
+	            <img-loader [src]="baseUrl+likeByUser.post_image" style="width:100%;height:100%;" (click)="inspirationdetail(likeByUser.id, likeByUser.user_id)" useImg=true></img-loader>
+	            <ion-row class="app-operation">
+	                <ion-col col-4>
+	                 <button id="like-{{likeByUser.id}}" ion-button icon-left clear small (click)="postLike(likeByUser.id, i, likeByUser.user_id)"  [attr.fill]="likeByUser.like_status ? 'liked' : null ">
+	                            <ion-icon class="icon-heart" [name]="(likeByUser.like_status) ? 'heart': 'heart-outline' "></ion-icon>
+	                        <div class="likes-content"><span class="count">{{likeByUser.like_count}}</span> Likes</div>
+	                    </button>
+	                </ion-col>
+	                <ion-col col-4>
+	                    <button ion-button icon-left clear small (click)="inspirationdetail(likeByUser.id, likeByUser.user_id)" [attr.fill]="likeByUser.comment_status ? 'changecolor' : null ">
+	                            <ion-icon class="icon-heart" name="text" [ios]="likeByUser.comment_status ? 'ios-text' : 'ios-text-outline' "></ion-icon>
+	                        <div class="likes-content"><span class="count">{{likeByUser.comment_count}}</span> Comments</div>
+	                    </button>
+	                </ion-col>
+	                <ion-col col-12>
+	                    <a class="add-comment-link" (click)="inspirationdetail(likeByUser.id, likeByUser.user_id)">Add comment</a>
+	                </ion-col>
+	            </ion-row>
+	    </ion-card>
+	    
+	    <ion-card *ngIf="(!likesAllData?.length) && (userAuthData.id==user_id)">
+	        <ion-card-content>
+	        <p>{{nothingFoundContent}}</p>
+	        </ion-card-content>
+	    </ion-card>
+	    
+	    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)"> 
+	        <ion-infinite-scroll-content 
+	            loadingSpinner="ios">
+	        </ion-infinite-scroll-content>
+	    </ion-infinite-scroll> 
+	</div>
+</ion-content>

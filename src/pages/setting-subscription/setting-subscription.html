@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>setting-subscription</ion-title>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+    <a class="backicon" (click)="backbutton()"><ion-icon name="arrow-back" ios="ios-arrow-back"></ion-icon></a>
+    <ion-title class='title'>Subscription</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="save()">
+                Save
+        </button>
+    </ion-buttons>
+</ion-toolbar> 
+</ion-header>
+<ion-content>
+    <p class="subscription">Easily manage what type of emails you receive from Stuccco. Unchecking an option unsubscribes you from receiving future emails.</p>
+    <ion-list>
+        <ion-item *ngFor="let notify of subscriptionData; let i = index">
+            <label class="cover-image-text" *ngIf="notify.status == true"><input type="checkbox"  value="{{notify}}" [(ngModel)]="notify.status" (change)="updateCheckedOptions(notify.id, $event)" checked> {{notify.name}}</label>
+            <label class="cover-image-text" *ngIf="notify.status != true"><input type="checkbox" value="{{notify}}" [(ngModel)]="notify.status" (change)="updateCheckedOptions(notify.id, $event)"> {{notify.name}}</label>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,116 @@
+<!--
+  Generated template for the DesignerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+    </ion-navbar>
+    <ion-toolbar class="sub-header">
+    <ion-grid>
+            <ion-row>
+                <ion-col col-6 class="no-padd">
+                    <div class="app-header-designer-area" (click)="scrollToTop()">
+                        <label class="title">Designers</label>
+                    </div>
+                </ion-col>
+                <ion-col col-3 class="no-padd">
+                    <ion-label class="header-lb">Filter:</ion-label>
+                    <ion-select [ngModel]="style.id" (ngModelChange)="sortByFilter($event)">
+                        <ion-option value="" [selected]="true">All</ion-option>
+                        <ion-option *ngFor="let style of this.filterStyles" [value]="style.id"> {{style.name}} </ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-3 class="no-padd">
+                        <ion-label class="header-lb">Sort</ion-label>
+                        <ion-select [ngModel]="value" (ngModelChange)="sortByStyle($event)">
+                            <ion-option value="trending" [selected]="value == trending">Trending</ion-option>
+                            <ion-option value="rating">Rating</ion-option>
+                        </ion-select>
+                </ion-col>
+            </ion-row>
+    </ion-grid>
+    </ion-toolbar> 
+</ion-header>
+
+<ion-content (ionScroll)="scrollHandler($event)">
+    <ion-card class="designer-cards" *ngFor="let designerData of designerListData"  let i=index;>
+        <ion-slides pager *ngIf="designerData['featured_images']?.length > 1">
+            <ion-slide *ngFor="let slideImage of designerData.featured_images">
+                <img-loader [src]="slideImage" useImg=true></img-loader>
+            </ion-slide>
+        </ion-slides>
+        <img-loader [src]="designerData.featured_images[0]" useImg=true *ngIf="designerData['featured_images']?.length == 1"></img-loader>
+        <ion-row>
+            <ion-col col-3>
+                <div class="person-image">
+                    <ion-avatar>
+                        <img [src]="designerData.avatar"/>
+                    </ion-avatar>
+                </div>
+            </ion-col>
+            <ion-col col-9>
+                <div class="person-name">
+                        <h2>{{designerData.hp_name}}</h2>
+                        <p class="user-category">{{designerData.user_category}}</p>
+                    <ion-row>
+                            <div class="person-description">
+                                <p class="style-prfrences" *ngIf="designerData.styles_prefrences!=null">{{designerData.styles_prefrences | addSpaceAfterComma:designerData.styles_prefrences }}</p>
+                            </div>
+                    </ion-row>
+                    <ion-row class="rating-start">
+                        <ion-col col-6 class="rating-star-column">
+                            <div class="rating" *ngFor="let i of [1,2,3,4,5]">
+                                <img src="assets/img/star-on.svg" style="width:20px;height:20px;" *ngIf="i <= designerData.calculated_rating" />
+                                <img src="assets/img/star-off.svg" style="width:20px;height:20px;" *ngIf="i > designerData.calculated_rating" [hidden]="designerData.total_reviews == 0"/>
+                            </div>
+                        </ion-col>
+                        <ion-col col-6 *ngIf="designerData.total_reviews>0">
+                            <p class="review">{{designerData.total_reviews}} review(s)</p>
+                        </ion-col>     
+                    </ion-row>
+                </div>
+            </ion-col>
+        </ion-row>   
+        <ion-row class="app-action-btn">
+            <ion-col col-4>
+            <button class="view-profile-button" ion-button round small color="color-brown" (click)="profileView(designerData)">View Profile</button> 
+            </ion-col>
+            <ion-col col-4>
+                <button ion-button round outline small color="color-gray"  (click)="instantBook(designerData)" *ngIf="designerData.id!=user_id">Hire designer</button>
+            </ion-col>
+        </ion-row> 
+        <!-- <ion-grid>
+            <ion-row>
+                <ion-col col-12>
+                    <div class="person-description">
+                        <p class="description">{{designerData.user_category}}</p> 
+                        <p class="description" *ngIf="designerData.styles_prefrences!=null">{{designerData.styles_prefrences | addSpaceAfterComma:designerData.styles_prefrences }}</p>
+                    </div>
+                    <div class="rating" *ngFor="let i of [1,2,3,4,5]">
+                        <img src="assets/img/star-on.svg" style="width:20px;height:20px;" *ngIf="i <= designerData.calculated_rating" />
+                        <img src="assets/img/star-off.svg" style="width:20px;height:20px;" *ngIf="i > designerData.calculated_rating" [hidden]="designerData.total_reviews == 0"/>
+                    </div>
+                    <div class="review" *ngIf="designerData.total_reviews>0">
+                        <p class="change">{{designerData.total_reviews}} review(s)</p> 
+                    </div>
+                </ion-col>
+                <ion-col col-12>
+                    <div class="message-button">
+                        <button ion-button  class="secondary instant-button" color="color-brown"  (click)="instantBook(designerData)" *ngIf="designerData.id!=user_id">Instant Book</button>
+                        <button ion-button  class="secondary profile-button" (click)="profileView(designerData)">View Profile</button> 
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid> -->
+    </ion-card> 
+    <!-- <ion-fab *ngIf="isScrollToTop">
+        <button ion-fab color="danger" class="scroll-to-top" mini><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab> -->
+    <ion-infinite-scroll *ngIf="hasMoreData == true" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content 
+            loadingSpinner="ios">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>    
+</ion-content>

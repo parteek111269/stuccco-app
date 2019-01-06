@@ -1,0 +1,41 @@
+.app-forgotpassword-page {
+    background-color: map-get($colors,theme-color-innerpage);
+    .instructions {
+        color: map-get($colors,theme-text-gray);
+        font-size: 10px;
+        text-align: center;
+        display: block;
+    }
+    .seperator{
+        height: 1px;
+        display: block;
+        background: map-get($colors,theme-bg-gray);
+        position: relative;
+        span{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: block;
+            width: 30px;
+            text-align: center;
+            color: map-get($colors,theme-text-gray);
+            top: -6px;
+            background: map-get($colors,theme-color-innerpage);
+            font-size: 12px;
+        }
+    }
+    .forgot-box{
+        display: block;
+        background: map-get($colors,theme-form-color);
+        ion-list{
+            margin-bottom:0;
+        }
+        .login-col{
+            margin: 0 16px;
+        }
+        .forget-btn{
+            font-size: 13px;
+        }
+    }
+}

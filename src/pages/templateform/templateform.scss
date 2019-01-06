@@ -1,0 +1,53 @@
+page-templateform {
+	.form-requirment.list-md {
+		padding-left: 10px;        
+		.calculate-area.label-md   {            
+            white-space: normal;
+        }
+    }
+    .form-requirment{
+        .calculate-area.label-ios  {
+            white-space: normal;
+        }
+    }
+    .file_upload{
+    }
+    .errortxt{
+        margin: 0px;
+        color: #e03133;
+        padding-left: 16px;
+    }
+    .thumb{
+        float: left;
+        width: 25%;
+        img{
+            margin: 0px auto 5px;
+        }
+    }
+    .active{
+        border: 2px solid #000000;
+    }
+    .label_div{
+        display: block;
+        overflow: hidden;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        font-size: inherit;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 13px 8px 13px 0;
+        -webkit-align-self: stretch;
+        -ms-flex-item-align: stretch;
+        font-size: 1.2rem;
+        align-self: stretch;
+        width: auto;
+        max-width: 100%;
+        color: black
+    }
+    .label_div span{
+        vertical-align: -webkit-baseline-middle;
+        font-size: 1.2rem;
+    }
+}
